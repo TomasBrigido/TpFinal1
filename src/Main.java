@@ -4,7 +4,7 @@ import java.io.*;
 public class Main {
   
     public static void main(String[] args) throws IOException {
-
+/*
         RdP red = new RdP();
         int a = red.numeroDeTrancisiones;
         Colas c1 = new Colas(a);
@@ -40,6 +40,6 @@ public class Main {
         Thread h3 = new Thread(t3);
         h3.start();
 
-
+*/
     }
 }
