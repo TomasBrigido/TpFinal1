@@ -3,13 +3,13 @@ import java.io.IOException;
 
 public class RdP{
     private Matriz sensibilizadas;
-    public Matriz incidencia;
+    private Matriz incidencia;
     private Matriz marcaActual;
-    public Matriz marcaInicial;
-    public int numeroDeTrancisiones ;
-    public int numeroDePlazas ;
-    int contradorTareas;
-    int contradorMemoria;
+    private Matriz marcaInicial;
+    private int numeroDeTrancisiones ;
+    private int numeroDePlazas ;
+    private int contradorTareas;
+    private int contradorMemoria;
 
     public RdP() throws IOException {
 
@@ -34,23 +34,58 @@ public class RdP{
 
     }
 
-    public boolean Disparar(Matriz transicion){//me pida un entero para dispara la transicion
-
-        System.out.println("Imprimo la matriz transicion;");
-        transicion.imprimirMatriz();
-        Matriz aux = new Matriz(numeroDePlazas,1);
-               aux = aux.multiplicar(incidencia,transicion);
-        Matriz aux2 = new Matriz(numeroDePlazas,1);
-               aux2 = aux2.suma(marcaActual,aux);
-        System.out.println("imprimo la matriz marca actual: ");
-               aux2.imprimirMatriz();
-        boolean m = aux2.valida();
-        if(m){
-            marcaActual=aux2;
-            return true;
-            }
-             return false;
+    public Matriz getSensibilizadas() {
+        return sensibilizadas;
     }
+
+    public Matriz getIncidencia() {
+        return incidencia;
+    }
+
+    public Matriz getMarcaActual() {
+        return marcaActual;
+    }
+
+    public Matriz getMarcaInicial() {
+        return marcaInicial;
+    }
+
+    public int getNumeroDeTrancisiones() {
+        return numeroDeTrancisiones;
+    }
+
+    public int getNumeroDePlazas() {
+        return numeroDePlazas;
+    }
+
+    public boolean Disparar(Matriz transicion, boolean temporal){
+        if(temporal){
+            System.out.println("SOY UNA TRANCISION TEMPORAL");
+            /*
+            Del vector de sensibilizados temporales identificar cual se esta disparando y si llego al tiempo alpha(booleano)
+
+             */
+            //return false;
+
+        }
+
+
+            System.out.println("Imprimo la matriz transicion;");
+            transicion.imprimirMatriz();
+            Matriz aux = new Matriz(numeroDePlazas, 1);
+            aux = aux.multiplicar(incidencia, transicion);
+            Matriz aux2 = new Matriz(numeroDePlazas, 1);
+            aux2 = aux2.suma(marcaActual, aux);
+            System.out.println("imprimo la matriz marca actual: ");
+            aux2.imprimirMatriz();
+            boolean m = aux2.valida();
+            if (m) {
+                marcaActual = aux2;
+                return true;
+            }
+            return false;
+
+        }
 
     public Matriz sensibilizadas(){
         Matriz transiciones = new Matriz(numeroDeTrancisiones,1);
@@ -72,10 +107,6 @@ public class RdP{
         }
 
         return sensibilizadas;
-    }
-
-    public void dispararTransicion(Matriz transicion ){
-        //disparar la transicion
     }
 
     public int getContadorTarea(int i) {
