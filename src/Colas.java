@@ -1,5 +1,5 @@
-import java.util.concurrent.Semaphore;
-
+import java.util.concurrent.Semaphore; // hirrere
+// grtr
 public class Colas {
     private Matriz quienes;
     private Semaphore colas[];
