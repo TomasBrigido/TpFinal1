@@ -59,6 +59,7 @@ public class RdP{
     }
 
     public boolean Disparar(Matriz transicion, boolean temporal){
+
         if(temporal){
             System.out.println("SOY UNA TRANCISION TEMPORAL");
             /*
@@ -67,7 +68,7 @@ public class RdP{
              */
             //return false;
 
-        }
+            }
 
 
             System.out.println("Imprimo la matriz transicion;");

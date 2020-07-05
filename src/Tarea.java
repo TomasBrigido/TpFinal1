@@ -5,6 +5,7 @@ public class Tarea implements Runnable{
     private boolean temporal;
 
 
+
     public Tarea(Monitor m, int transicion, int a,boolean temporal){
         this.m = m;
         this.transicion = transicion;
