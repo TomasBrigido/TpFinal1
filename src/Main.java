@@ -10,11 +10,11 @@ public class Main {
         Politicas p1 = new Politicas(red);
         Monitor m = new Monitor(red,c1,p1);
 
-        for (int i = 0; i<4; i++){
-            Tarea t = new Tarea(m, i, red.getNumeroDeTrancisiones(), false);
+       // for (int i = 0; i<4; i++){
+            Tarea t = new Tarea(m, 0, red.getNumeroDeTrancisiones());
             Thread h0 = new Thread(t);
             h0.start();
-        }
+       // }
 /*
         Tarea t1 = new Tarea(m,1,a,false);
         Thread h1 = new Thread(t1);

@@ -18,8 +18,7 @@ public class Monitor {
 
 	}
 
-	public void dispararTransicion(Matriz transicion,Boolean temporal) {
-
+	public void dispararTransicion(Matriz transicion) {
 		try {
 			//System.out.println("Intenta ingresar: " + Thread.currentThread().getName());
 			mutex.acquire();
@@ -27,7 +26,7 @@ public class Monitor {
 			k = true;
 
 			while(k){
-				k = petri_net.Disparar(transicion,temporal);
+				k = petri_net.Disparar(transicion);
 				System.out.println(k);
 				if(k){
 					Matriz and = new Matriz(petri_net.getNumeroDeTrancisiones(),1).comparar(petri_net.sensibilizadas(),colas.quienesEstan());//.comparar(sensibilizadas,quienes);

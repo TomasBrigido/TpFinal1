@@ -58,9 +58,9 @@ public class RdP{
         return numeroDePlazas;
     }
 
-    public boolean Disparar(Matriz transicion, boolean temporal){
+    public boolean Disparar(Matriz transicion){
 
-        if(temporal){
+        if(true){
             System.out.println("SOY UNA TRANCISION TEMPORAL");
             /*
             Del vector de sensibilizados temporales identificar cual se esta disparando y si llego al tiempo alpha(booleano)
@@ -69,6 +69,7 @@ public class RdP{
             //return false;
 
             }
+
 
 
             System.out.println("Imprimo la matriz transicion;");
