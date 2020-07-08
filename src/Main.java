@@ -1,10 +1,13 @@
 import javax.swing.*;
 import java.io.*;
+import java.sql.Timestamp;
+import java.lang.Object;
+import java.util.Date;
 
 public class Main {
   
     public static void main(String[] args) throws IOException {
-
+/*
         RdP red = new RdP();
         Colas c1 = new Colas(red.getNumeroDeTrancisiones());
         Politicas p1 = new Politicas(red);
@@ -14,17 +17,9 @@ public class Main {
             Tarea t = new Tarea(m, 0, red.getNumeroDeTrancisiones());
             Thread h0 = new Thread(t);
             h0.start();
-       // }
-/*
-        Tarea t1 = new Tarea(m,1,a,false);
-        Thread h1 = new Thread(t1);
-
-        Tarea t2 = new Tarea(m,2,a,false);
-        Thread h2 = new Thread(t2);
 */
-        //h1.start();
-        //h2.start();
 
+        Timestamp tsp = new Timestamp();
 
     }
 }
