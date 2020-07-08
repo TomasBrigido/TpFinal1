@@ -3,12 +3,14 @@ public class Tarea implements Runnable{
     private int transicion;
     private Matriz mTransicion;
     private int tiempoDormir;
+    private boolean temporal;
 
-    public Tarea(Monitor m, int transicion, int a){
+    public Tarea(Monitor m, int transicion, int a,boolean temporal){
         this.m = m;
         this.transicion = transicion;
         mTransicion = new Matriz(a,1);
         tiempoDormir = 0;
+        this.temporal = temporal;
 
     }
     public Tarea(Monitor m, int transicion, int transicion1, int transicion2){
@@ -19,7 +21,7 @@ public class Tarea implements Runnable{
     public void run () {
         while (true) {
 
-            m.dispararTransicion(mTransicion.transformarAVector(transicion));
+            m.dispararTransicion(mTransicion.transformarAVector(transicion),temporal);
 
             if(tiempoDormir>0){
                 try{

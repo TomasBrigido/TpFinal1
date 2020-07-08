@@ -85,9 +85,8 @@ public class RdP{
         return sensibilizadas;
     }
 
-    public boolean Disparar(Matriz transicion){
+    public boolean Disparar(Matriz transicion,boolean temporal){
         boolean k = true;
-        boolean temporal = true;//lo pondriamos en cada hila para identificar que es temporal
         if(temporal) {//si es temporal
             boolean ventana = sensibilizadasConTiempo.testVentanaDeTiempo(transicion);//veo si estoy en la ventana de tiempo
             if (ventana) {
@@ -96,7 +95,7 @@ public class RdP{
                 if (esperando) {
                     k = false;
                 } else {
-                    sensibilizadasConTiempo.setNuevoTimeStamp();//nose que hace este metodo
+                    sensibilizadasConTiempo.setNuevoTimeStamp(sensibilizadas());//nose que hace este metodo
                     k = true; //k en true porque no hay nadie esperando para disparar y estoy dentro de la ventana de tiempo
                 }
             } else {
@@ -121,7 +120,7 @@ public class RdP{
                 if(temporal) {
                     sensibilizadasConTiempo.resetEsperando(transicion);//reseteo el id del hilo en la tracision
                 }
-                sensibilizadasConTiempo.setNuevoTimeStamp();//arrancar los contadores de tiempo de las matrices con tiempo sensibilizadas y para los contadores de las trancisions que se desensibilzaron
+                sensibilizadasConTiempo.setNuevoTimeStamp(sensibilizadas());//arrancar los contadores de tiempo de las matrices con tiempo sensibilizadas y para los contadores de las trancisions que se desensibilzaron
                 marcaActual = aux2;
                 return true;
             }

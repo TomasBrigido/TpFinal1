@@ -20,7 +20,7 @@ public class sensibilizadocontiempo {
         return true;
     }
 
-    public boolean setNuevoTimeStamp(){
+    public boolean setNuevoTimeStamp(Matriz sensiibilizadas){
         return true;
     }
 
