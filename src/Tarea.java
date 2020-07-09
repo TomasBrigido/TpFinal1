@@ -5,10 +5,10 @@ public class Tarea implements Runnable{
     private int tiempoDormir;
     private boolean temporal;
 
-    public Tarea(Monitor m, int transicion, int a,boolean temporal){
+    public Tarea(Monitor m, int transicion, int numeroDeTransiciones,boolean temporal){
         this.m = m;
         this.transicion = transicion;
-        mTransicion = new Matriz(a,1);
+        mTransicion = new Matriz(numeroDeTransiciones,1);
         tiempoDormir = 0;
         this.temporal = temporal;
 

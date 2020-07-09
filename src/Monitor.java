@@ -20,9 +20,7 @@ public class Monitor {
 
 	public void dispararTransicion(Matriz transicion,boolean temporal) {
 		try {
-			//System.out.println("Intenta ingresar: " + Thread.currentThread().getName());
 			mutex.acquire();
-			System.out.println(Thread.currentThread().getName() + " entro al monitor");
 			k = true;
 
 			while(k){
@@ -54,12 +52,11 @@ public class Monitor {
 						despierto = false;
 					}
 
-				}else{	// para k == false
-					mutex.release();//aumenta el semafoto en uno para que enrte otro hilo
-					//colas.adquirir(indice); //cambiar indice por transicion.numero_transicion();	que hace el hilo si no hay nadie en la cola?
-					colas.adquirir(transicion.numeroTransicion());
-				}
-				//mutex.release();
+				}else{	// para k == false if(!voyADormir)
+					mutex.release();
+					colas.adquirir(transicion.numeroTransicion());}
+
+
 			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();

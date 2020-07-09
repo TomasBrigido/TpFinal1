@@ -10,24 +10,22 @@ public class Main {
 
         RdP red = new RdP();
         red.getSensibilizadasConTiempo().setNuevoTimeStamp(red.sensibilizadas());
+        red.getSensibilizadasConTiempo().getdatoSensibilizadaConTiempo().imprimirMatriz();
         Colas c1 = new Colas(red.getNumeroDeTrancisiones());
         Politicas p1 = new Politicas(red);
         Monitor m = new Monitor(red, c1, p1);
+        int numeroDeTransiciones = red.getNumeroDeTrancisiones();
 
-        red.getSensibilizadasConTiempo().getdatoSensibilizadaConTiempo().imprimirMatriz();
+        Tarea t1 = new Tarea(m,0,numeroDeTransiciones,true);
+        Thread h1 = new Thread(t1);
+        h1.start();
 
-        try {
-            Thread.sleep(980);
+        try{
+            Thread.sleep(1000);
         }catch (InterruptedException e){
             e.printStackTrace();
         }
-        Matriz m1 = new Matriz(17,1);
-        m1.asignarElemento(1,0,0);
 
-        System.out.println(red.getSensibilizadasConTiempo().testVentanaDeTiempo(m1));
-
-        red.getSensibilizadasConTiempo().setEsperando(m1);
-        red.getSensibilizadasConTiempo().getdatoSensibilizadaConTiempo().imprimirMatriz();
 
 
 
