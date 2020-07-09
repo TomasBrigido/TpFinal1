@@ -61,12 +61,10 @@ public class Matriz {
     //Compara 2 matrices y devuelve un vector de con 1s en la pocision donde hay valores en las 2 matrices y 0s en los demas lugares
     public Matriz comparar(Matriz a, Matriz b) {
         int and = 0;
-// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         Matriz z = new Matriz(a.getFilas(), a.getColumnas());
-        if (a.getColumnas() == b.getColumnas() && a.getFilas() == b.getFilas()) {
+        if ( a.getFilas() == b.getFilas()) {//a.getColumnas() == b.getColumnas() &&
             for (int i = 0; i < a.getFilas(); i++) {
                 for (int j = 0; j < b.getColumnas(); j++) {
-//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
                     if (a.getElemento(i, j) > 0 && b.getElemento(i, j) > 0) {
                         and = 1;
                     } else {
@@ -77,7 +75,7 @@ public class Matriz {
                 }
             }
         } else {
-            System.out.println("Error");
+            System.out.println("Error en comprara las matrices");
         }
         return z;
     }

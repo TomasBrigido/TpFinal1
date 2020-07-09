@@ -4,13 +4,13 @@ import java.io.IOException;
 
 public class RdP{
     private Matriz sensibilizadas;
-    public sensibilizadocontiempo sensibilizadasConTiempo;
+    private sensibilizadocontiempo sensibilizadasConTiempo;
     private Matriz incidencia;
     private Matriz marcaActual;
     private Matriz marcaInicial;
     private int numeroDeTrancisiones;
     private int numeroDePlazas;
-    boolean esperando;
+    private boolean esperando;
     private int contradorTareas;
     private int contradorMemoria;
 
@@ -39,28 +39,12 @@ public class RdP{
 
     }
 
-    public Matriz getSensibilizadas() {
-        return sensibilizadas;
-    }
-
-    public Matriz getIncidencia() {
-        return incidencia;
-    }
-
-    public Matriz getMarcaActual() {
-        return marcaActual;
-    }
-
-    public Matriz getMarcaInicial() {
-        return marcaInicial;
+    public sensibilizadocontiempo getSensibilizadasConTiempo(){
+        return sensibilizadasConTiempo;
     }
 
     public int getNumeroDeTrancisiones() {
         return numeroDeTrancisiones;
-    }
-
-    public int getNumeroDePlazas() {
-        return numeroDePlazas;
     }
 
     public Matriz sensibilizadas(){
@@ -95,7 +79,7 @@ public class RdP{
                 if (esperando) {
                     k = false;
                 } else {
-                    sensibilizadasConTiempo.setNuevoTimeStamp(sensibilizadas());//nose que hace este metodo
+                    //sensibilizadasConTiempo.setNuevoTimeStamp(sensibilizadas());//nose que hace este metodo
                     k = true; //k en true porque no hay nadie esperando para disparar y estoy dentro de la ventana de tiempo
                 }
             } else {

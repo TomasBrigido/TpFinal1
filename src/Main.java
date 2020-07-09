@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.plaf.TableHeaderUI;
 import java.io.*;
 import java.sql.Timestamp;
 
@@ -8,34 +9,29 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
         RdP red = new RdP();
-        /*
+        red.getSensibilizadasConTiempo().setNuevoTimeStamp(red.sensibilizadas());
         Colas c1 = new Colas(red.getNumeroDeTrancisiones());
         Politicas p1 = new Politicas(red);
-        Monitor m = new Monitor(red,c1,p1);
+        Monitor m = new Monitor(red, c1, p1);
 
-       // for (int i = 0; i<4; i++){
-            Tarea t = new Tarea(m, 0, red.getNumeroDeTrancisiones());
-            Thread h0 = new Thread(t);
-            h0.start();
+        red.getSensibilizadasConTiempo().getdatoSensibilizadaConTiempo().imprimirMatriz();
 
-*/      red.sensibilizadasConTiempo.getSensibilizadaConTiempo().imprimirMatriz();
-        long fecha = System.currentTimeMillis();
-        Timestamp tsp = new Timestamp(fecha);
-        System.out.println(tsp);
-
-        try{
-            Thread.sleep(2000);
-        }
-        catch (InterruptedException e){
+        try {
+            Thread.sleep(980);
+        }catch (InterruptedException e){
             e.printStackTrace();
         }
+        Matriz m1 = new Matriz(17,1);
+        m1.asignarElemento(1,0,0);
 
-        long fecha2 = System.currentTimeMillis();
-        Timestamp tsp2 = new Timestamp(fecha2);
-        System.out.println(tsp2);
+        System.out.println(red.getSensibilizadasConTiempo().testVentanaDeTiempo(m1));
 
-        long resta = tsp2.getTime() - tsp.getTime();
-        System.out.println(resta);
+        red.getSensibilizadasConTiempo().setEsperando(m1);
+        red.getSensibilizadasConTiempo().getdatoSensibilizadaConTiempo().imprimirMatriz();
+
+
+
+
 
 
     }

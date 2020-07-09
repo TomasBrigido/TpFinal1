@@ -19,6 +19,7 @@ public class Tarea implements Runnable{
 
     @Override
     public void run () {
+
         while (true) {
 
             m.dispararTransicion(mTransicion.transformarAVector(transicion),temporal);
