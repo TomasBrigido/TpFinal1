@@ -15,10 +15,10 @@ public class Monitor {
 		this.colas = colas;
 		this.politica = politica;
 		despierto = false;
-
 	}
 
-	public void dispararTransicion(Matriz transicion,boolean temporal) {
+	public void dispararTransicion(Matriz transicion,boolean temporal)
+	{
 		try {
 			mutex.acquire();
 			k = true;
@@ -26,8 +26,17 @@ public class Monitor {
 			while(k){
 				k = petri_net.Disparar(transicion,temporal);
 				System.out.println(k);
+
+				if(petri_net.getSensibilizadasConTiempo().getdatoSensibilizadaConTiempo().getElemento(transicion.numeroTransicion(),3) == Thread.currentThread().getId()){
+					int value=petri_net.getTiempoDormir();
+					petri_net.setTiempoDormir(0);
+					mutex.release();
+					sleep(value);
+					return;
+				}
+
 				if(k){
-					Matriz and = new Matriz(petri_net.getNumeroDeTrancisiones(),1).comparar(petri_net.sensibilizadas(),colas.quienesEstan());//.comparar(sensibilizadas,quienes);
+					Matriz and = new Matriz(petri_net.getNumeroDeTransiciones(),1).comparar(petri_net.sensibilizadas(),colas.quienesEstan());//.comparar(sensibilizadas,quienes);
 					int m = and.sumarElementos();
 					Matriz proximo_disparo; // la creo para igualarla a la matriz and
 
@@ -54,9 +63,8 @@ public class Monitor {
 
 				}else{	// para k == false if(!voyADormir)
 					mutex.release();
-					colas.adquirir(transicion.numeroTransicion());}
-
-
+					colas.adquirir(transicion.numeroTransicion());
+				}
 			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();
