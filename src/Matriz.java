@@ -1,18 +1,11 @@
-import java.io.*;
-import java.util.Scanner;
-import java.util.ArrayList;
-
 public class Matriz {
 
     private int[][] m;
     private int numeroDeFilas;
     private int numeroDeColumnas;
 
-
-
-    //constructor que inicializa la matriz con 0s
+    //Inicializa la matriz con 0s con las dimensiones dadas como parametros.
     public Matriz(int numeroDeFilas, int numeroDeColumnas) {
-
         this.numeroDeFilas = numeroDeFilas;
         this.numeroDeColumnas = numeroDeColumnas;
         m = new int[numeroDeFilas][numeroDeColumnas];
@@ -24,24 +17,40 @@ public class Matriz {
         }
     }
 
+    /*! \brief Metodo que devuelve el valor entero que representa el numero de filas de la matriz.
+     *  \return numero de filas de la matriz.
+     */
     public int getFilas() {
         return numeroDeFilas;
     }
 
+    /*! \brief Metodo que devuelve el valor entero que representa el numero de columnas de la matriz.
+     *  \return numero de columnas de la matriz.
+     */
     public int getColumnas() {
         return numeroDeColumnas;
     }
 
+    /*! \brief Metodo que devuelve el valor del elemento dado por la fila y la columna pasadas como parametros.
+        \param fila entero que representa el numero de fila en la matriz.
+        \param columna entero que representa el numero de columna en la matriz.
+        \return numero de filas de la matriz.
+    */
     public int getElemento(int fila, int columna) {
         return m[fila][columna];
     }
 
-    //asigna un elemento en la pocision dada de la matriz
+    /*! \brief Asigna un valor a un elemento determinado, en la matriz.
+        \param valor entero que se asignará en la posicion dada de la matriz.
+        \param fila entero que representa el numero de fila en la matriz.
+        \param columna entero que representa el numero de columna en la matriz.
+        \return numero de filas de la matriz.
+    */
     public void asignarElemento(int valor, int fila, int columna) {
         m[fila][columna] = valor;
     }
 
-    //imprime la matriz
+    /*! \brief Imprime los valores de la matriz completa por consola.  */
     public void imprimirMatriz() {
         String es = new String();
 
@@ -55,10 +64,14 @@ public class Matriz {
         }
         System.out.println();
         System.out.println(es);
-
     }
 
-    //Compara 2 matrices y devuelve un vector de con 1s en la pocision donde hay valores en las 2 matrices y 0s en los demas lugares
+    /*! \brief Compara dos matrices de tipo vector vertical y devuelve un vector en el que el valor es 1 o 0 segun
+     *         si hay valores en la misma posicion en ambas matrices. Se hace una operacion AND elemento a elemento.
+     *   \param a primera de las matrices a comparar.
+     *   \param b segunda matriz a comparar.
+     *   \return Matriz (objeto) compuesta por 1s y 0s.
+    */
     public Matriz comparar(Matriz a, Matriz b) {
         int and = 0;
         Matriz z = new Matriz(a.getFilas(), a.getColumnas());
@@ -80,7 +93,9 @@ public class Matriz {
         return z;
     }
 
-    //Suma la cantidad de elementos que hay en un vector, (no suma los valores de los elementos que hay en el vector)
+    /*! \brief Suma la cantidad de elementos distintos de 0 que hay en una matriz.
+     *   \return Cantidad de elementos no nulos en la matriz.
+     */
     public int sumarElementos() {
         int suma = 0;
         for (int i = 0; i < this.getFilas(); i++) {
@@ -92,20 +107,24 @@ public class Matriz {
         return suma;
     }
 
-    // donde encuentra un 1 devuelve la posicion (devuelve la fila en donde esta el 1 ? bien o mal?)
+    /*! \brief Devuelve la posicion en la matriz en la que encuentra un valor 1. Como se trata de un vector vertical,
+     *          devuelve el numero de fila. Debe existir un unico valor 1 en la matriz.
+     *  \return Posicion de aparicion del valor distinto de 0 o 0 en caso de no encontrarlo.
+     */
     public int numeroTransicion() {
         for (int i = 0; i < this.getFilas(); i++) {
             for (int j = 0; j < this.getColumnas(); j++) {
-
                 if (this.getElemento(i, j) == 1) {
                     return i;
                 }
             }
         }
-        return 0;
+        return -1;
     }
 
-    //Retorna false si hay un numero negativo en la matriz (en nuestro caso no queremos un -1) y retorna true si no hay numero negativo en la matriz
+    /*! \brief Verifica que en la matriz no existen valores negativos en cada uno de sus elementos.
+        \return True si no existen dichos valores o False en caso que haya valores menores a 0.
+     */
     public boolean valida() {
         for (int i = 0; i < this.numeroDeFilas; i++) {
             for (int j = 0; j < this.numeroDeColumnas; j++) {
@@ -117,7 +136,10 @@ public class Matriz {
         return true;
     }
 
-    //Transforma una matriz en nula
+    /*! \brief Transforma una matriz determinada a una matriz de 0s conservando sus dimensiones.
+        \param m Matriz a transformar en nula
+        \return Matriz (objeto) nula con las mismas dimensiones de la matriz pasada como parametro.
+    */
     public Matriz matrizNula(Matriz m) {
         int filas = m.getFilas();
         int columnas = m.getColumnas();
@@ -129,14 +151,20 @@ public class Matriz {
         return m;
     }
 
-    //Recibe como parametro el numero de transicion que se desea disparar y te da el vector del disparo
+    /*! \brief Devuelve un vector de disparo de una columna de dimension. El valor pasado como parametro es la posicion del vector
+     *         que tendrá el unico valor 1, los demas elementos serán 0s en el vector.
+        \param n posicion en el vector.
+        \return Matriz (objeto) con el mismo numero de filas y una columna.
+     */
     public Matriz transformarAVector(int n) {
         Matriz transicion = new Matriz(this.getFilas(), 1);
         transicion.asignarElemento(1, n, 0);
         return transicion;
     }
 
-    //Tiene que se un vector columna y lo rota para arriba
+    /*! \brief Rota en un vector columna constituido de un solo valor 1 y demas 0s, el valor 1 a la posicion siguiente hacia abajo.
+     *         En el caso de ser el ultimo elemento del vector, rota hacia el elemento inicial del mismo.
+     */
     public void rotar(){
         int aux = this.getElemento(this.numeroDeFilas-1,0);
         for(int i= this.numeroDeFilas-2; i >= 0; i-- ){
@@ -155,12 +183,19 @@ public class Matriz {
         this.imprimirMatriz();
     }
 */
-    //El numero de columnas de la primera tiene que ser iguarl al numero de filas de la segunda te da una matriz de numero de filas de la primera por el numero de columnas de la segunda
-    public static Matriz multiplicar(Matriz x, Matriz y) {// x 5filas 1columna  e y 1fila 5columnas
+
+    /*! \brief Multiplica dos matrices de manera vectorial y devuelve la matriz resultante. En caso de que no se cumpla la regla
+     *         de dimensiones en la multiplicacion (Numero de columnas de la primera tiene que ser igual al numero de filas de
+     *         la segunda), devuelve una matriz nula junto con un error por consola.
+     *  \param x matriz que premultiplica a y.
+     *  \param y matriz que posmultiplica a x.
+     *  \return Matriz (objeto) resultante de la multiplicacion vectorial.
+     */
+    public static Matriz multiplicar(Matriz x, Matriz y) {
         Matriz z = new Matriz(x.getFilas(), y.getColumnas());
         int value;
 
-        if (x.getColumnas() == y.getFilas()) {
+        if(x.getColumnas() == y.getFilas()) {
             for (int i = 0; i < x.getFilas(); i++) {
                 for (int j = 0; j < y.getColumnas(); j++) {
                     int sum = 0;
@@ -178,30 +213,38 @@ public class Matriz {
         }
     }
 
-    //Suma de matrices, tienen que ser de la misma dimension
+    /*! \brief Suma dos matrices de forma elemento a elemento (posicion a posicion). Deben tener las misma dimensiones,
+     *         sino devuelve una matriz nula con un error impreso en consola.
+     *  \param x matriz, el primer sumando.
+     *  \param y matriz, el segundo sumando.
+     *  \return Matriz (objeto) resultante de la suma.
+    */
     public Matriz suma(Matriz x, Matriz y) {
-        {
-            Matriz z = new Matriz(x.getFilas(), x.getColumnas());
-            int value;
+        Matriz z = new Matriz(x.getFilas(), x.getColumnas());
+        int value;
 
-            if (x.getFilas() == y.getFilas() && x.getColumnas() == y.getColumnas()) {
-                for (int i = 0; i < x.getFilas(); i++) {
-                    for (int j = 0; j < y.getColumnas(); j++) {
-                        value = x.getElemento(i, j) + y.getElemento(i, j);        ///sumo elemento a elemento
-                        z.asignarElemento(value, i, j);
-                        //System.out.print("[" + z.getElemento(i,j) + "]");
-                    }
-                    //System.out.print('\n');
+        if (x.getFilas() == y.getFilas() && x.getColumnas() == y.getColumnas()) {
+            for (int i = 0; i < x.getFilas(); i++) {
+                for (int j = 0; j < y.getColumnas(); j++) {
+                    value = x.getElemento(i, j) + y.getElemento(i, j);        ///sumo elemento a elemento
+                    z.asignarElemento(value, i, j);
+                    //System.out.print("[" + z.getElemento(i,j) + "]");
                 }
-                return z;
-            } else {
-                System.out.println("ERROR: las matrices no son iguales. error metodo SUMA");
-                return z;
+                //System.out.print('\n');
             }
+            return z;
+        } else {
+            System.out.println("ERROR: las matrices no son iguales. error metodo SUMA");
+            return z;
         }
     }
 
-    //Resta de martrices, tiene que ser de la misma dimension
+    /*! \brief Resta dos matrices de forma elemento a elemento (posicion a posicion). Deben tener las misma dimensiones,
+     *         sino devuelve una matriz nula con un error impreso en consola.
+     *  \param x matriz, minuendo de la operacion.
+     *  \param y matriz, sustraendo de la operacion.
+     *  \return Matriz (objeto) resultante de la resta entre vectores.
+    */
     public static Matriz resta(Matriz x, Matriz y) {
         Matriz z = new Matriz(x.getFilas(), x.getColumnas());
         int value;
@@ -221,219 +264,25 @@ public class Matriz {
         }
     }
 
+    public Matriz xor(Matriz pre, Matriz pos){
+        Matriz z = new Matriz(pre.getFilas(), pre.getColumnas());
 
-
-
-}
-/*
-    public Matriz cargarDatos(File archivo) {
-        m = new int[100][100];
-        int numeroLinea = -1;
-        int numeroColumna = 0;
-        Matriz matriziti = null;
-        try {
-            BufferedReader lector = null;
-            archivo = null;
-            lector = new BufferedReader((new FileReader(archivo)));
-            String linea = null;
-            while ((linea = lector.readLine()) != null) {
-                numeroLinea++;
-                String[] fila = linea.split(" ");
-                for (numeroColumna = 0; numeroColumna < fila.length; numeroColumna++) {
-                    int valor = Integer.parseInt(fila[numeroColumna]);
-                    m[numeroLinea][numeroColumna] = valor;
-                }
-                matriziti = new Matriz(numeroLinea + 1, numeroColumna);
-                for (int i = 0; i <= numeroLinea; i++)
-                    for (int j = 0; j < numeroColumna; j++) {
-                        matriziti.asignarElemento(i, j, m[i][j]);
-                    }
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (pre.getFilas() != pos.getFilas() || pre.getColumnas() != pos.getColumnas()) {
+            System.out.println("ERROR metodo XOR: las matrices no son de las mismas dimensiones");
+            return z;
         }
-        return matriziti;
-    }
 
-    public Matriz cargarArchivo(String String_archivo){
-        String path = this.getClass().getProtectionDomain().getCodeSource().getLocation().getPath();
-        File archivo = new File(path);
-        path = archivo.getParent();
-        path = path.substring(path.lastIndexOf("\\")+1,path.length())+String_archivo;
-        File archivo2 = new File(path);
-        Matriz matrix = cargarDatos(archivo2);
-        return matrix;
+        for (int i = 0; i < pre.getFilas(); i++) {
+            for (int j = 0; j < pre.getColumnas(); j++) {
+                boolean v_xor = pre.getElemento(i,0) != pos.getElemento(i,0);
+                if(v_xor){
+                    z.asignarElemento(1, i, j);
+                }
+            //System.out.print("[" + z.getElemento(i,j) + "]");
+            }
+            //System.out.print('\n');
+        }
+        return z;
     }
 
 }
-*/
-
-/*
-//Methods: Addition, subtraction and mutiplication operations were written as methods in order to operate on matricices. Both static and non-static methods were constructed.
-//The static versions take two matricies as parameters, while the non-static counterparts only take one and operate it against m.
-//Within all six methods a test is performed in order to check whether or not the two matrcicies are compatible or not.
-//For addiition and subtraction the number of rows and columns must be the same for both matricies and a temporary Matriz is created to match those parameters.
-//For multiplication, the number of columns of the first Matriz must be equivalent to the number of rows of the second Matriz and a temporary Matriz is created with the number of rows of the first Matriz and
-//the number of columns of the second Matriz as parameters. If the matricies are not compatable an error message is printed.
-  public Matriz() {
-/*     Scanner keyboard = new Scanner(System.in);
-    System.out.println();
-    System.out.print("Please enter the number of rows: "); numberOfRows = keyboard.nextInt();
-    System.out.print("Please enter the number of columns: "); numberOfColumns = keyboard.nextInt();
-    m = new double[numberOfRows][numberOfColumns];
-    System.out.println("Please assign the following elements: ");
-    for(int i = 0; i < numberOfRows; i++)
-        {
-            for(int j = 0; j < numberOfColumns; j++)
-                {
-                    System.out.print("[" + i + "]" + "[" + j + "]: ");
-                    m[i][j] = keyboard.nextDouble();
-                }
-        }
-    }
-    public static Matriz staticAdd(Matriz x, Matriz y) {
-        Matriz z = new Matriz(x.getRows(), x.getColumns());
-        double value;
-        System.out.println();
-        System.out.println("The sum of the matricices is: ");
-
-        if (x.getRows() == y.getRows() && x.getColumns() == y.getColumns()) {
-            for (int i = 0; i < x.getRows(); i++) {
-                for (int j = 0; j < y.getColumns(); j++) {
-                    value = x.getElement(i, j) + y.getElement(i, j);
-                    z.assignElement(value, i, j);
-                    System.out.print("[" + z.getElement(i, j) + "]");
-                }
-                System.out.print('\n');
-            }
-            return z;
-        } else {
-            System.out.println("ERROR: The number of rows and columns of the matricies are not equal.");
-            return z;
-        }
-    }
-
-
-    public static Matriz staticSubtract(Matriz x, Matriz y) {
-        Matriz z = new Matriz(x.getRows(), x.getColumns());
-        double value;
-        System.out.println();
-        System.out.println("The difference of the two matricices is: ");
-
-        if (x.getRows() == y.getRows() && x.getColumns() == y.getColumns()) {
-            for (int i = 0; i < x.getRows(); i++) {
-                for (int j = 0; j < y.getColumns(); j++) {
-                    value = x.getElement(i, j) - y.getElement(i, j);
-                    z.assignElement(value, i, j);
-                    System.out.print("[" + z.getElement(i, j) + "]");
-                }
-                System.out.print('\n');
-            }
-            return z;
-        } else {
-            System.out.println("ERROR: The number of rows and columns of the matricies are not equal.");
-            return z;
-        }
-    }
-
-    public static Matriz staticMultiply(Matriz x, Matriz y) {
-        Matriz z = new Matriz(x.getRows(), y.getColumns());
-        double value;
-        System.out.println();
-        System.out.println("The product of the matricices is: ");
-
-        if (x.getColumns() == y.getRows()) {
-            for (int i = 0; i < x.getRows(); i++) {
-                for (int j = 0; j < y.getColumns(); j++) {
-                    double sum = 0;
-                    for (int k = 0; k < x.getRows(); k++) {
-                        sum += x.getElement(i, k) * y.getElement(k, j);
-                    }
-                    value = sum;
-                    z.assignElement(value, i, j);
-                    System.out.print("[" + z.getElement(i, j) + "]");
-                }
-                System.out.print('\n');
-            }
-            return z;
-        } else {
-            System.out.println("ERROR: The number of columns of the first Matriz and the number of rows of the second Matriz are not equivalent.");
-            return z;
-        }
-    }
-
-
-    public Matriz add(Matriz x) {
-        Matriz z = new Matriz(numberOfRows, numberOfColumns);
-        double value;
-        System.out.println();
-        System.out.println("The sum of the matricices is: ");
-
-        if (numberOfRows == x.getRows() && numberOfColumns == x.getColumns()) {
-            for (int i = 0; i < x.getRows(); i++) {
-                for (int j = 0; j < x.getColumns(); j++) {
-                    value = m[i][j] + x.getElement(i, j);
-                    z.assignElement(value, i, j);
-                    System.out.print("[" + z.getElement(i, j) + "]");
-                }
-                System.out.print('\n');
-            }
-            return z;
-        } else {
-            System.out.println("ERROR: The number of rows and columns of the matricies are not equivalent.");
-            return z;
-        }
-    }
-
-
-    public Matriz subtract(Matriz x) {
-        Matriz z = new Matriz(numberOfRows, numberOfColumns);
-        double value;
-        System.out.println();
-        System.out.println("The difference of the two matricices is: ");
-
-        if (numberOfRows == x.getRows() && numberOfColumns == x.getColumns()) {
-            for (int i = 0; i < x.getRows(); i++) {
-                for (int j = 0; j < x.getColumns(); j++) {
-                    value = m[i][j] - x.getElement(i, j);
-                    z.assignElement(value, i, j);
-                    System.out.print("[" + z.getElement(i, j) + "]");
-                }
-                System.out.print('\n');
-            }
-            return z;
-        } else {
-            System.out.println("ERROR: The number of rows and columns of the matricies are not equivalent.");
-            return z;
-        }
-    }
-
-    public Matriz multiply(Matriz x) {
-        Matriz z = new Matriz(numberOfRows, x.getColumns());
-        double value;
-        System.out.println();
-        System.out.println("The product of the matricices is: ");
-
-        if (numberOfColumns == x.getRows()) {
-            for (int i = 0; i < numberOfRows; i++) {
-                for (int j = 0; j < x.getColumns(); j++) {
-                    double sum = 0;
-                    for (int k = 0; k < numberOfRows; k++) {
-                        sum += m[i][k] * x.getElement(k, j);
-                    }
-                    value = sum;
-                    z.assignElement(value, i, j);
-                    System.out.print("[" + z.getElement(i, j) + "]");
-                }
-                System.out.print('\n');
-            }
-            return z;
-        } else {
-            System.out.println("ERROR: The number of columns of the first Matriz and the number of rows of the second Matriz are not equivalent.");
-            return z;
-        }
-    }
-
- */

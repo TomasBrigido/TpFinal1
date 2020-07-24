@@ -10,6 +10,7 @@ public class Politicas {
     public Politicas(RdP red) throws IOException {
         rdp = red;
     }
+
     /*
     Devuelve un vector de transiciones de un solo 1 y demas ceros. Ese 1 representa la transicion que segun la politica se va a disparar
     */
@@ -27,6 +28,7 @@ public class Politicas {
         Matriz transicion = new Matriz(a.getFilas(),a.getColumnas());
         return transicion.transformarAVector(transicionElegida);
     }
+
     /*
      * Selecciona entre las dos posibles tarea que tiene el hilo y te devuelve la transicion a disparar
      * */
@@ -47,6 +49,7 @@ public class Politicas {
             return matriz.transformarAVector(5);
         }
     }
+
     /*
      * Selecciona la memoria con menos elementos
      * */
@@ -58,6 +61,7 @@ public class Politicas {
         }
         return matriz.transformarAVector(15);
     }
+
     /*
      * Selecciona entre (1 - 0) para decidir a que cola se hara la transicion, si una de las dos esta llena, va hacia la otra
      * Te devuelve la transicion (T1 or T2)

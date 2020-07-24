@@ -2,7 +2,7 @@ public class Tarea implements Runnable{
     private Monitor m;
     private int transicion;
     private Matriz mTransicion;
-    private int tiempoDormir;
+    public int tiempoDormir;
     private boolean temporal;
 
     public Tarea(Monitor m, int transicion, int numeroDeTransiciones,boolean temporal){
@@ -24,18 +24,18 @@ public class Tarea implements Runnable{
 
             m.dispararTransicion(mTransicion.transformarAVector(transicion),temporal);
 
-            if(tiempoDormir>0){
-                try{
-                    Thread.sleep(tiempoDormir);
-                }
-                catch (InterruptedException e){
-                    e.printStackTrace();
-                }
-                finally{
-                    tiempoDormir = 0;
-                }
+            // if(tiempoDormir>0){
+            //     try{
+            //         Thread.sleep(tiempoDormir);
+            //     }
+            //     catch (InterruptedException e){
+            //         e.printStackTrace();
+            //     }
+            //     finally{
+            //         tiempoDormir = 0;
+            //     }
 
-            }
+            // }
         }
     }
 

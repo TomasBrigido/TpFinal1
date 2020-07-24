@@ -14,27 +14,34 @@ public class Colas {
         }
     }
 
+    /*! \brief Verifica la cantidad de hilos esperando en la cola de cada transicion. Si hay uno o mas hilos esperando en la cola
+    *          coloca un 1 en la posicion correspondiente al indice de transicion, caso contrario coloca un 0.
+    *   \return Matriz (objeto) o vector columna compuesta de 1 y 0, en la que cada posicion corresponde a una cola de transicion.
+    * */
     public Matriz quienesEstan(){
         for(int i = 0; i<largoColaTransiciones ;i++ ){
             int aux = colas[i].getQueueLength();
             if(aux>0) {
                 quienes.asignarElemento(1,i,0);
-                //setear el lugar i de quienes con el valor 1
-            }
-            else{
+            }else{
                 quienes.asignarElemento(0,i,0);
-                //setear el lugar i de quienes con el valor 0
             }
         }
-        // el vector que te entrega tiene que tener unos y ceros, si hay valores mayores a 1 se toman como 1
-        // para no confundir el valor de m cuando se pregunte
         return quienes;
     }
 
+    /*! \brief Despierta a los hilos que duermen en la cola determinada por el indice pasado como parametro y aumenta el
+    *          contador del semaforo.
+    *   \param indice Entero que representa el numero de transicion (la cola de esa transicion).
+    * */
     public void liberar(int indice){
         colas[indice].release();
     }
 
+    /*! \brief El hilo que la ejecuta dquiere un lugar en el semaforo y se pone a dormir en la cola determinada por el
+     *         indice pasado como parametro.
+     *   \param indice Entero que representa el numero de transicion (la cola de esa transicion).
+     * */
     public void adquirir(int indice) {
         try {
             colas[indice].acquire();
