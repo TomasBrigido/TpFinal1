@@ -21,7 +21,7 @@ public class RdP {
         File miDir = new File(".");
         String path = miDir.getCanonicalPath();
 
-        GeneradorMatrices g = new GeneradorMatrices(path + "/src/matrices/test/incidencia.txt");
+        GeneradorMatrices g = new GeneradorMatrices(path + "/src/matrices/incidencia.txt");
         incidencia = g.cargarDatos();
 
         numeroDeTransiciones = g.determinarColumnas();
@@ -29,7 +29,7 @@ public class RdP {
 
         sensibilizadas = new Matriz(numeroDeTransiciones, 1);
 
-        g.setPath(path + "/src/matrices/test/marcaInicial.txt");
+        g.setPath(path + "/src/matrices/marcaInicial.txt");
         marcaInicial = g.cargarDatos();
 
         marcaActual = new Matriz(numeroDeTransiciones, 1);
@@ -72,10 +72,23 @@ public class RdP {
         return tmp;
     }
 
-    public boolean Disparar(Matriz transicion,boolean temporal){
+    public boolean Disparar(Matriz transicion){
         boolean k = true;
-        //boolean temporal= sensibilizadasConTiempo.;
-        if(true) {//si es temporal
+        boolean temporal = false;
+        boolean estaSensibilizada = false;
+
+        if(sensibilizadasConTiempo.getdatoSensibilizadaConTiempo().getElemento(transicion.numeroTransicion(),0)!= 0 ){
+            temporal = true;
+            System.out.println("Soy una transicion temporal");
+
+        }
+
+        if(sensibilizadas.getElemento(transicion.numeroTransicion(),0) == 1){
+            System.out.println("Mi transicion esta sensibilizada");
+            estaSensibilizada = true;
+        }
+
+        if(temporal && estaSensibilizada) {//si es temporal
             boolean ventana = sensibilizadasConTiempo.testVentanaDeTiempo(transicion);//veo si estoy en la ventana de tiempo
             if (ventana) {
                 esperando = sensibilizadasConTiempo.testEsperando(transicion);//veo si no hay nadie durmiendo esperando esa trancision o si el hilo que entro viene de un sleep por esa misma trancision
@@ -87,31 +100,34 @@ public class RdP {
                     k = true; //k en true porque no hay nadie esperando para disparar y estoy dentro de la ventana de tiempo
                 }
             } else {
-                //mutex.release();
                 if(sensibilizadasConTiempo.getdatoSensibilizadaConTiempo().getElemento(transicion.numeroTransicion(), 3) == -1){
                     sensibilizadasConTiempo.setEsperando(transicion);//setear que estoy durmiendo por la trancision con el id
+                    sensibilizadasConTiempo.setTiempoDormir(transicion);//setear el tiempo que tengo que dormir
                 }
-                Tarea t = (Tarea) Thread.currentThread();
-                t.setTiempoDormir(100);
                 k = false;
             }
-        }
+        }else{
+            System.out.println("Mi tansicion no esta sensibilizada o no soy temporal");
+            }
 
         if(k){ //si el k es true es porque puedo dispara sino retorno false
             Matriz pre= sensibilizadas(); //Obtengo la matriz de sensibilizados pre disparo.
 
             System.out.println("Imprimo la matriz transicion;");
             transicion.imprimirMatriz();
+
             Matriz aux = new Matriz(numeroDePlazas, 1);
             aux = aux.multiplicar(incidencia, transicion);
             Matriz aux2 = new Matriz(numeroDePlazas, 1);
             aux2 = aux2.suma(marcaActual, aux);
+
             System.out.println("imprimo la matriz marca actual: ");
             aux2.imprimirMatriz();
+
             boolean matrizValida = aux2.valida();
             if (matrizValida) {
                 if(temporal) {
-                    sensibilizadasConTiempo.resetEsperando(transicion);//reseteo el id del hilo en la tracision
+                    sensibilizadasConTiempo.resetEsperando(transicion);//reseteo el id del hilo en la tracision y el tiempo de dormida
                 }
                 marcaActual = aux2;
                 Matriz pos = sensibilizadas();

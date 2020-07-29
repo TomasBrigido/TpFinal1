@@ -7,7 +7,8 @@ public class Monitor {
 	private Colas colas;
 	private Politicas politica;
 	private boolean k;
-	private boolean despierto ;
+	private boolean despierto;
+	public int contador;
 
 	public Monitor(RdP red, Colas colas, Politicas politica) {
 		mutex = new Semaphore(1,true);
@@ -17,25 +18,35 @@ public class Monitor {
 		despierto = false;
 	}
 
-	public void dispararTransicion(Matriz transicion,boolean temporal)
-	{
+	public RdP getRedDePetri(){
+		return petri_net;
+	}
+
+	public void dispararTransicion(Matriz transicion)	{
 		try {
 			mutex.acquire();
+			System.out.println("Entro al monitor el hilo : " + Thread.currentThread().getName());
 			k = true;
 
 			while(k){
-				k = petri_net.Disparar(transicion,temporal);
-				System.out.println(k);
+				k = petri_net.Disparar(transicion);
+				System.out.println("Pudo disparar? -> " + k);
 
-				if(petri_net.getSensibilizadasConTiempo().getdatoSensibilizadaConTiempo().getElemento(transicion.numeroTransicion(),3) == Thread.currentThread().getId()){
-					int value=petri_net.getTiempoDormir();
-					petri_net.setTiempoDormir(0);
+				int comparacionHiloID = petri_net.getSensibilizadasConTiempo().getdatoSensibilizadaConTiempo().getElemento(transicion.numeroTransicion(),3);
+
+				if( comparacionHiloID == Thread.currentThread().getId()){
 					mutex.release();
-					sleep(value);
+					System.out.println("Voy a dormir");
 					return;
 				}
 
 				if(k){
+
+				    if(transicion.numeroTransicion() == 11 || transicion.numeroTransicion() == 12 || transicion.numeroTransicion() == 13 || transicion.numeroTransicion() == 14){
+                        contador ++;
+                    }
+
+
 					Matriz and = new Matriz(petri_net.getNumeroDeTransiciones(),1).comparar(petri_net.sensibilizadas(),colas.quienesEstan());//.comparar(sensibilizadas,quienes);
 					int m = and.sumarElementos();
 					Matriz proximo_disparo; // la creo para igualarla a la matriz and
@@ -50,29 +61,28 @@ public class Monitor {
 						}
 						int indice ;
 						indice = proximo_disparo.numeroTransicion();//que hilo tiene que despertar en el arreglo de semaforos
-						System.out.println(indice);
+						System.out.println("Se desperto el hilo de la transicion: " + indice);
 						colas.liberar(indice);
 						despierto = true;
 						break;
-						//sacar hilo del monitor sin ejecutar mutex.realese();
+
 					}else{// para m==0
-						System.out.println("Entre al else");
 						k=false;
 						despierto = false;
 					}
 
 				}else{	// para k == false if(!voyADormir)
+					System.out.println("Me voy a dormir a la cola de mi transicion");
 					mutex.release();
 					colas.adquirir(transicion.numeroTransicion());
 				}
 			}
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}finally{
 			if(!despierto) {
-				System.out.println("Entro al if del mutex");
+				System.out.println("Me voy del monitor sin despertar a ningun hilo");
 				mutex.release();
 			}
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
 	}
 
