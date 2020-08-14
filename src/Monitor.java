@@ -8,7 +8,10 @@ public class Monitor {
 	private Politicas politica;
 	private boolean k;
 	private boolean despierto;
-	public int contador;
+	public int contador5;
+	public int contador6;
+    public int contador7;
+    public int contador8;
 
 	public Monitor(RdP red, Colas colas, Politicas politica) {
 		mutex = new Semaphore(1,true);
@@ -42,12 +45,26 @@ public class Monitor {
 
 				if(k){
 
-				    if(transicion.numeroTransicion() == 11 || transicion.numeroTransicion() == 12 || transicion.numeroTransicion() == 13 || transicion.numeroTransicion() == 14){
-                        contador ++;
+				    if(transicion.numeroTransicion() == 5){
+                        contador5 ++;
+                    }
+
+				    if(transicion.numeroTransicion() == 6){
+				        contador6 ++;
+                    }
+
+                    if(transicion.numeroTransicion() == 7){
+                        contador7 ++;
+                    }
+
+                    if(transicion.numeroTransicion() == 8){
+                        contador8 ++;
                     }
 
 
-					Matriz and = new Matriz(petri_net.getNumeroDeTransiciones(),1).comparar(petri_net.sensibilizadas(),colas.quienesEstan());//.comparar(sensibilizadas,quienes);
+                    Matriz and = new Matriz(petri_net.getNumeroDeTransiciones(),1).comparar(petri_net.sensibilizadas(),colas.quienesEstan());
+					System.out.println("Imprimo la matriz de comparacion de selsibilizadas y hilos en cola");
+					and.imprimirMatriz();
 					int m = and.sumarElementos();
 					Matriz proximo_disparo; // la creo para igualarla a la matriz and
 
