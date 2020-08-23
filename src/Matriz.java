@@ -62,8 +62,8 @@ public class Matriz {
             }
             es += '\n';
         }
-        System.out.println();
-        System.out.println(es);
+        Logger.println("",false);
+        Logger.println(es,false);
     }
 
     /*! \brief Compara dos matrices de tipo vector vertical y devuelve un vector en el que el valor es 1 o 0 segun
@@ -88,7 +88,7 @@ public class Matriz {
                 }
             }
         } else {
-            System.out.println("Error en comprara las matrices");
+            Logger.println("Error en comprara las matrices",false);
         }
         return z;
     }
@@ -208,7 +208,7 @@ public class Matriz {
             }
             return z;
         } else {
-            System.out.println(" ERROR METODO MULTIPICACION ERROR: The number of columns of the first Matriz and the number of rows of the second Matriz are not equivalent.");
+            Logger.println(" ERROR METODO MULTIPICACION ERROR: The number of columns of the first Matriz and the number of rows of the second Matriz are not equivalent.",false);
             return z;
         }
     }
@@ -228,13 +228,13 @@ public class Matriz {
                 for (int j = 0; j < y.getColumnas(); j++) {
                     value = x.getElemento(i, j) + y.getElemento(i, j);        ///sumo elemento a elemento
                     z.asignarElemento(value, i, j);
-                    //System.out.print("[" + z.getElemento(i,j) + "]");
+                    //Logger.print("[" + z.getElemento(i,j) + "]",false);
                 }
-                //System.out.print('\n');
+                //Logger.print('\n',false);
             }
             return z;
         } else {
-            System.out.println("ERROR: las matrices no son iguales. error metodo SUMA");
+            Logger.println("ERROR: las matrices no son iguales. error metodo SUMA",false);
             return z;
         }
     }
@@ -253,13 +253,13 @@ public class Matriz {
                 for (int j = 0; j < y.getColumnas(); j++) {
                     value = x.getElemento(i, j) - y.getElemento(i, j);    ///resto elemento a elemento
                     z.asignarElemento(value, i, j);
-                    // System.out.print("[" + z.getElemento(i,j) + "]");
+                    // Logger.print("[" + z.getElemento(i,j) + "]",false);
                 }
-                //System.out.print('\n');
+                //Logger.print('\n',false);
             }
             return z;
         } else {
-            System.out.println("ERROR: Las matrices no son iguales");
+            Logger.println("ERROR: Las matrices no son iguales",false);
             return z;
         }
     }
@@ -268,7 +268,7 @@ public class Matriz {
         Matriz z = new Matriz(pre.getFilas(), pre.getColumnas());
 
         if (pre.getFilas() != pos.getFilas() || pre.getColumnas() != pos.getColumnas()) {
-            System.out.println("ERROR metodo XOR: las matrices no son de las mismas dimensiones");
+            Logger.println("ERROR metodo XOR: las matrices no son de las mismas dimensiones",false);
             return z;
         }
 
@@ -278,11 +278,19 @@ public class Matriz {
                 if(v_xor){
                     z.asignarElemento(1, i, j);
                 }
-            //System.out.print("[" + z.getElemento(i,j) + "]");
+            //Logger.print("[" + z.getElemento(i,j) + "]",false);
             }
-            //System.out.print('\n');
+            //Logger.print('\n',false);
         }
         return z;
+    }
+
+    public Matriz extractRow(Matriz a,int n_fila){
+        Matriz fila = new Matriz(1, a.getColumnas());
+        for(int i=0; i < a.getColumnas(); i++){
+            fila.asignarElemento(getElemento(n_fila, i),0,i);
+        }
+        return fila;
     }
 
 }

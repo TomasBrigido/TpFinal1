@@ -8,6 +8,7 @@ public class Main {
   
     public static void main(String[] args) throws IOException {
 
+        Logger.clearLogs();
         RdP red = new RdP();
         //aca arrancaria un timestamp en la sensibilizada 0
         red.getSensibilizadasConTiempo().setNuevoTimeStamp(red.sensibilizadas());
@@ -16,6 +17,8 @@ public class Main {
         Politicas p1 = new Politicas(red);
         Monitor m = new Monitor(red, c1, p1);
         int numeroDeTransiciones = red.getNumeroDeTransiciones();
+
+
 /*
         Tarea t0 = new Tarea(m,0,numeroDeTransiciones);
         Thread h0 = new Thread(t0);
@@ -36,15 +39,23 @@ public class Main {
         Tarea t4 = new Tarea(m,7,numeroDeTransiciones);
         Thread h4 = new Thread(t4);
         h4.start();
+*/
 
- */
         for(int i = 0; i<17 ; i++){
-            Tarea ti = new Tarea(m,i,numeroDeTransiciones);
+            int[] a= {i};
+            if(i==5){
+                a= new int[]{i, 9};
+            }else if(i==6){
+                a= new int[]{i,10};
+            }else if(i==10 || i==9){
+                continue;
+            }
+            Tarea ti = new Tarea(m,a,numeroDeTransiciones);
             Thread hi = new Thread(ti);
             hi.start();
         }
 
-        while (true){
+/*        while (true){
 
             System.out.println("*************************************** 5: " + m.contador5 + "*****************************************");
             System.out.println("*************************************** 6: " + m.contador6 + "*****************************************");
@@ -56,21 +67,13 @@ public class Main {
                 e.printStackTrace();
             }
 
-        }
-
-
-
-
-
-
+        }*/
 
         // try{
         //     Thread.sleep(1000);
         // }catch (InterruptedException e){
         //     e.printStackTrace();
         // }
-
-        
 
     }
 }

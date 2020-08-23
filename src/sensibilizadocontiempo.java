@@ -46,9 +46,9 @@ public class sensibilizadocontiempo {
         Timestamp tstmp = new Timestamp(fecha);
         int alpha = datoSensibilizadaConTiempo.getElemento(trancision.numeroTransicion(), columnaAlpha);
         int beta = datoSensibilizadaConTiempo.getElemento(trancision.numeroTransicion(), columbaBeta);
-        System.out.println("Tiempo que debe transcurrir: " + alpha);
+        Logger.println("Tiempo que debe transcurrir: " + alpha,false);
         int tiempoTranscurrido = (int) tstmp.getTime() - datoSensibilizadaConTiempo.getElemento(trancision.numeroTransicion(), columnaTimeStamp);
-        System.out.println("Tiempor desde que se sensibilizo la taransicion " + trancision.numeroTransicion() + " es: " + tiempoTranscurrido);
+        Logger.println("Tiempor desde que se sensibilizo la taransicion " + trancision.numeroTransicion() + " es: " + tiempoTranscurrido,false);
         if (tiempoTranscurrido >= alpha && tiempoTranscurrido < beta) {
             return true;
         }

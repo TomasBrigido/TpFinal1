@@ -28,42 +28,27 @@ public class Monitor {
 	public void dispararTransicion(Matriz transicion)	{
 		try {
 			mutex.acquire();
-			System.out.println("Entro al monitor el hilo : " + Thread.currentThread().getName());
+			Logger.println("Entro al monitor el hilo : " + Thread.currentThread().getName(),false);
 			k = true;
 
 			while(k){
 				k = petri_net.Disparar(transicion);
-				System.out.println("Pudo disparar? -> " + k);
+				Logger.println("Pudo disparar? -> " + k,false);
 
 				int comparacionHiloID = petri_net.getSensibilizadasConTiempo().getdatoSensibilizadaConTiempo().getElemento(transicion.numeroTransicion(),3);
 
 				if( comparacionHiloID == Thread.currentThread().getId()){
 					mutex.release();
-					System.out.println("Voy a dormir");
+					Logger.println("Voy a dormir",false);
 					return;
 				}
 
 				if(k){
 
-				    if(transicion.numeroTransicion() == 5){
-                        contador5 ++;
-                    }
-
-				    if(transicion.numeroTransicion() == 6){
-				        contador6 ++;
-                    }
-
-                    if(transicion.numeroTransicion() == 7){
-                        contador7 ++;
-                    }
-
-                    if(transicion.numeroTransicion() == 8){
-                        contador8 ++;
-                    }
-
+					actualizarContador(transicion.numeroTransicion());
 
                     Matriz and = new Matriz(petri_net.getNumeroDeTransiciones(),1).comparar(petri_net.sensibilizadas(),colas.quienesEstan());
-					System.out.println("Imprimo la matriz de comparacion de selsibilizadas y hilos en cola");
+					Logger.println("Imprimo la matriz de comparacion de selsibilizadas y hilos en cola",false);
 					and.imprimirMatriz();
 					int m = and.sumarElementos();
 					Matriz proximo_disparo; // la creo para igualarla a la matriz and
@@ -73,12 +58,12 @@ public class Monitor {
 						proximo_disparo = and;
 						if(m>1){
 							proximo_disparo = politica.cual(and);//despertar a otro
-							System.out.println("Eligio la transicion: ");
+							Logger.println("Eligio la transicion: ",false);
 							proximo_disparo.imprimirMatriz();
 						}
 						int indice ;
 						indice = proximo_disparo.numeroTransicion();//que hilo tiene que despertar en el arreglo de semaforos
-						System.out.println("Se desperto el hilo de la transicion: " + indice);
+						Logger.println("Se desperto el hilo de la transicion: " + indice,false);
 						colas.liberar(indice);
 						despierto = true;
 						break;
@@ -89,18 +74,38 @@ public class Monitor {
 					}
 
 				}else{	// para k == false if(!voyADormir)
-					System.out.println("Me voy a dormir a la cola de mi transicion");
+					Logger.println("Me voy a dormir a la cola de mi transicion",false);
 					mutex.release();
 					colas.adquirir(transicion.numeroTransicion());
 				}
 			}
 			if(!despierto) {
-				System.out.println("Me voy del monitor sin despertar a ningun hilo");
+				Logger.println("Me voy del monitor sin despertar a ningun hilo",false);
 				mutex.release();
 			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public void actualizarContador(int t){
+		switch(t){
+			case 5:
+				contador5++;
+				break;
+			case 6:
+				contador6++;
+				break;
+			case 7:
+				contador7++;
+				break;
+			case 8:
+				contador8++;
+				break;
+			default:
+				break;
+		}
+		return;
 	}
 
 }

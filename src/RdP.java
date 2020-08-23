@@ -8,8 +8,10 @@ public class RdP {
     private Matriz incidencia;
     private Matriz marcaActual;
     private Matriz marcaInicial;
+    private Matriz invPlaza;
     private int numeroDeTransiciones;
     private int numeroDePlazas;
+    private int resPInv[]= new int[] {1,64,1,8,1,4,4,1};
     private boolean esperando;
     private int contradorTareas;
     private int contradorMemoria;
@@ -34,6 +36,9 @@ public class RdP {
 
         marcaActual = new Matriz(numeroDeTransiciones, 1);
         marcaActual = marcaInicial;
+
+        g.setPath(path+"/src/matrices/invariantesPlaza.txt");
+        invPlaza = g.cargarDatos();
     }
 
     public sensibilizadocontiempo getSensibilizadasConTiempo() {
@@ -79,12 +84,12 @@ public class RdP {
 
         if(sensibilizadasConTiempo.getdatoSensibilizadaConTiempo().getElemento(transicion.numeroTransicion(),0)!= 0 ){
             temporal = true;
-            System.out.println("Soy una transicion temporal");
+            Logger.println("Soy una transicion temporal",false);
 
         }
 
         if(sensibilizadas.getElemento(transicion.numeroTransicion(),0) == 1){
-            System.out.println("Mi transicion esta sensibilizada");
+            Logger.println("Mi transicion esta sensibilizada",false);
             estaSensibilizada = true;
         }
 
@@ -107,13 +112,13 @@ public class RdP {
                 k = false;
             }
         }else{
-            System.out.println("Mi tansicion no esta sensibilizada o no soy temporal");
-            }
+            Logger.println("Mi tansicion no esta sensibilizada o no soy temporal",false);
+        }
 
         if(k){ //si el k es true es porque puedo dispara sino retorno false
             Matriz pre= sensibilizadas(); //Obtengo la matriz de sensibilizados pre disparo.
 
-            System.out.println("Imprimo la matriz transicion;");
+            Logger.println("Imprimo la matriz transicion;",false);
             transicion.imprimirMatriz();
 
             Matriz aux = new Matriz(numeroDePlazas, 1);
@@ -121,7 +126,7 @@ public class RdP {
             Matriz aux2 = new Matriz(numeroDePlazas, 1);
             aux2 = aux2.suma(marcaActual, aux);
 
-            System.out.println("imprimo la matriz marca actual: ");
+            Logger.println("imprimo la matriz marca actual: ",false);
             aux2.imprimirMatriz();
 
             boolean matrizValida = aux2.valida();
@@ -129,6 +134,13 @@ public class RdP {
                 if(temporal) {
                     sensibilizadasConTiempo.resetEsperando(transicion);//reseteo el id del hilo en la tracision y el tiempo de dormida
                 }
+
+                //Compruebo los invariantes de plaza en cada disparo
+                checkPInv(aux2);
+
+                // Imprimo transicion que se disparó
+                Logger.printT(transicion.numeroTransicion(),false);
+
                 marcaActual = aux2;
                 Matriz pos = sensibilizadas();
                 sensibilizadasConTiempo.actualizarSensibilizadoT(pre,pos);//Actualizo los tstamp de las transiciones que correspondan
@@ -150,6 +162,21 @@ public class RdP {
 
     public boolean isFull(int n) {
         return false;
+    }
+
+    /*! \brief  Metodo que verifica si se cumplen los invariantes de plaza en la ejecucion actual. Multiplica cada uno de
+     *          los vectores fila de invariantes de plaza con el marcado actual. El resultado se compara con el determinado
+     *           por la red. En caso de que sean distintos devuelve un assert.
+     *  \param  mActual Objeto Matriz que representa el marcado actual de la red (luego de dispararse una transicion).
+     *  \return Matriz (objeto) de transiciones sensibilizadas segun la logica de la red de Petri.
+    */
+    public void checkPInv(Matriz mActual){
+        for(int i=0;i<invPlaza.getFilas();i++){
+            Matriz a=invPlaza.extractRow(invPlaza, i);
+            a=a.multiplicar(a, mActual);
+            int res=a.getElemento(0, 0);
+            assert res==resPInv[i]: String.format("Falla en los invariantes de plaza. El valor calculado es (%d) distinto al teorico (%d)", res, resPInv[i]);
+        }
     }
 
 }
