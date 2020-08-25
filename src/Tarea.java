@@ -30,6 +30,7 @@ public class Tarea implements Runnable{
                         e.printStackTrace();
                     }
                 }else{
+                    Logger.updateContador(transicion[i]);
                     i++;
                 }
             }

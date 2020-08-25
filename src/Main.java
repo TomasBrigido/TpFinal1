@@ -7,7 +7,6 @@ import java.sql.Timestamp;
 public class Main {
   
     public static void main(String[] args) throws IOException {
-
         Logger.clearLogs();
         RdP red = new RdP();
         //aca arrancaria un timestamp en la sensibilizada 0

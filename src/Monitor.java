@@ -8,10 +8,6 @@ public class Monitor {
 	private Politicas politica;
 	private boolean k;
 	private boolean despierto;
-	public int contador5;
-	public int contador6;
-    public int contador7;
-    public int contador8;
 
 	public Monitor(RdP red, Colas colas, Politicas politica) {
 		mutex = new Semaphore(1,true);
@@ -44,9 +40,6 @@ public class Monitor {
 				}
 
 				if(k){
-
-					actualizarContador(transicion.numeroTransicion());
-
                     Matriz and = new Matriz(petri_net.getNumeroDeTransiciones(),1).comparar(petri_net.sensibilizadas(),colas.quienesEstan());
 					Logger.println("Imprimo la matriz de comparacion de selsibilizadas y hilos en cola",false);
 					and.imprimirMatriz();
@@ -86,26 +79,6 @@ public class Monitor {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-	}
-
-	public void actualizarContador(int t){
-		switch(t){
-			case 5:
-				contador5++;
-				break;
-			case 6:
-				contador6++;
-				break;
-			case 7:
-				contador7++;
-				break;
-			case 8:
-				contador8++;
-				break;
-			default:
-				break;
-		}
-		return;
 	}
 
 }

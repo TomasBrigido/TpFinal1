@@ -139,7 +139,7 @@ public class RdP {
                 checkPInv(aux2);
 
                 // Imprimo transicion que se disparó
-                Logger.printT(transicion.numeroTransicion(),false);
+                Logger.printT(transicion.numeroTransicion());
 
                 marcaActual = aux2;
                 Matriz pos = sensibilizadas();
