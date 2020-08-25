@@ -11,9 +11,9 @@ public final class Logger {
             File miDir = new File(".");
             String path = miDir.getCanonicalPath();
             char t= (char) (transicion+97);
-
             FileWriter writer_t = new FileWriter(path+"/src/logs/exec_t.txt",true);
         	writer_t.write(t);
+            //writer_t.write("T"+transicion);
         	writer_t.close();
         }catch(IOException e) {
             e.printStackTrace();
@@ -21,7 +21,7 @@ public final class Logger {
     }
 
     public static void println(String text,boolean file){
-        text=text == "" ? "\n":text;
+        text= text.equals("") ? "\n":text;
         if(file){
             try{
                 File miDir = new File(".");
