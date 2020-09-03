@@ -3,6 +3,8 @@ import javax.swing.plaf.TableHeaderUI;
 import java.io.*;
 import java.sql.Timestamp;
 
+import static java.lang.Thread.sleep;
+
 
 public class Main {
   
@@ -16,6 +18,8 @@ public class Main {
         Politicas p1 = new Politicas(red);
         Monitor m = new Monitor(red, c1, p1);
         int numeroDeTransiciones = red.getNumeroDeTransiciones();
+
+        Thread thread_task[]= new Thread[15];
 
 
 /*
@@ -39,7 +43,7 @@ public class Main {
         Thread h4 = new Thread(t4);
         h4.start();
 */
-
+        int indice=0;
         for(int i = 0; i<17 ; i++){
             int[] a= {i};
             if(i==5){
@@ -51,9 +55,13 @@ public class Main {
             }
             Tarea ti = new Tarea(m,a,numeroDeTransiciones);
             Thread hi = new Thread(ti);
+            thread_task[indice]=hi;
             hi.start();
+            indice++;
         }
 
+        System.out.println("Finalizado wachin!");
+        //Logger.println("Cantidad de ",false);
 /*        while (true){
 
             System.out.println("*************************************** 5: " + m.contador5 + "*****************************************");

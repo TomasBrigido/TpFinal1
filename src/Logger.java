@@ -12,8 +12,8 @@ public final class Logger {
             String path = miDir.getCanonicalPath();
             char t= (char) (transicion+97);
             FileWriter writer_t = new FileWriter(path+"/src/logs/exec_t.txt",true);
-        	writer_t.write(t);
-            //writer_t.write("T"+transicion);
+        	//writer_t.write(t);
+            writer_t.write("T"+transicion);
         	writer_t.close();
         }catch(IOException e) {
             e.printStackTrace();
@@ -54,8 +54,8 @@ public final class Logger {
     }
 
     public static void updateContador(int t){
-        for(int i=0;i<contador.length;i++)
-            contador[i]++;
+        //for(int i=0;i<contador.length;i++)
+            contador[t]++;
     }
 
     public static int getContador(int indice){return contador[indice];}
@@ -66,10 +66,15 @@ public final class Logger {
 
     public static int[] getBalanceMem(){
         return new int[]{contador[12]+contador[14], contador[11]+contador[13]};
+        //return contador[12]+contador[14]+contador[11]+contador[13];
     }
 
     public static int[] getTareasProc(){
         return new int[]{contador[8],contador[10],contador[7],contador[9]};
+    }
+
+    public static int getSumaMemoria(){
+        return contador[15]+contador[16];
     }
 
 }

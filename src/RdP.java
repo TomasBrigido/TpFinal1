@@ -11,7 +11,7 @@ public class RdP {
     private Matriz invPlaza;
     private int numeroDeTransiciones;
     private int numeroDePlazas;
-    private int resPInv[]= new int[] {1,64,1,8,1,4,4,1};
+    private int resPInv[]= new int[] {1,8,1,8,1,4,4,1};
     private boolean esperando;
     private int contradorTareas;
     private int contradorMemoria;

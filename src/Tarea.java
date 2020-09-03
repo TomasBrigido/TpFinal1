@@ -3,6 +3,7 @@ public class Tarea implements Runnable{
     private int[] transicion;
     private Matriz mTransicion;
     public int tiempoDormir;
+    private static final int TOTAL_TAREAS=5;
 
 
     public Tarea(Monitor m, int[] transicion, int numeroDeTransiciones){
@@ -14,7 +15,8 @@ public class Tarea implements Runnable{
 
     @Override
     public void run () {
-        while (true) {
+        boolean no_fin=true;
+        while (no_fin) {
             int i=0;
             while(i<transicion.length) {
                 m.dispararTransicion(mTransicion.transformarAVector(transicion[i]));
@@ -30,11 +32,37 @@ public class Tarea implements Runnable{
                         e.printStackTrace();
                     }
                 }else{
+                    if(m.getEnd()){break;} //se pone esto porque cuando va cerrando los hilos en aquellos que tiene dos transiciones para disparar, la segunda entra al monitor cambia el k a true se duerme y no despierta a nadie mas
                     Logger.updateContador(transicion[i]);
                     i++;
                 }
             }
+            no_fin=setEnd(transicion[0]);
+       }
+        Logger.println("Estoy terminando hilo:"+transicion[0],true );
+    }
+
+    private boolean setEnd(int thread){
+        if(thread==0 && Logger.getContador(thread)>=TOTAL_TAREAS){
+            return false;
+        } else if((thread==15 || thread==16) && Logger.getSumaMemoria()>=TOTAL_TAREAS) {
+            m.setEnd(true);
+            finishThreads();
+            return false;
+        } else if(Logger.getSumaMemoria()>=TOTAL_TAREAS && m.getEnd()){
+            finishThreads();
+            return false;
         }
+        return true;
+    }
+
+    private void finishThreads(){
+        int t=m.getColas().quienesEstan().numeroTransicion();
+        if(t!=-1 && m.getEnd()){
+            Logger.println("Soy hilo: "+transicion[0]+";despertando a hilo: "+t,true );
+            m.getColas().liberar(t);
+        }
+        return;
     }
 
 

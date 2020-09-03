@@ -8,6 +8,7 @@ public class Monitor {
 	private Politicas politica;
 	private boolean k;
 	private boolean despierto;
+	private boolean end;
 
 	public Monitor(RdP red, Colas colas, Politicas politica) {
 		mutex = new Semaphore(1,true);
@@ -15,6 +16,7 @@ public class Monitor {
 		this.colas = colas;
 		this.politica = politica;
 		despierto = false;
+		end=false;
 	}
 
 	public RdP getRedDePetri(){
@@ -70,9 +72,14 @@ public class Monitor {
 					Logger.println("Me voy a dormir a la cola de mi transicion",false);
 					mutex.release();
 					colas.adquirir(transicion.numeroTransicion());
+					System.out.println("Me desperte, k="+k);
 				}
 			}
 			if(!despierto) {
+				if(getEnd()){
+					System.out.println("Finalizando hilo");
+					return;
+				}
 				Logger.println("Me voy del monitor sin despertar a ningun hilo",false);
 				mutex.release();
 			}
@@ -81,4 +88,15 @@ public class Monitor {
 		}
 	}
 
+	public boolean getEnd() {
+		return end;
+	}
+
+	public void setEnd(boolean end) {
+		this.end = end;
+	}
+
+	public Colas getColas(){
+		return colas;
+	}
 }
