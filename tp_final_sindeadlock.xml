@@ -72,7 +72,7 @@
                 </graphics>
             </name>
             <initialMarking>
-                <value>Default,1</value>
+                <value>Default,8</value>
                 <graphics>
                     <offset x="0.0" y="0.0"/>
                 </graphics>
@@ -172,7 +172,7 @@
                 </graphics>
             </name>
             <initialMarking>
-                <value>Default,1</value>
+                <value>Default,8</value>
                 <graphics>
                     <offset x="0.0" y="0.0"/>
                 </graphics>
@@ -470,7 +470,7 @@
                 </graphics>
             </name>
             <orientation>
-                <value>45</value>
+                <value>180</value>
             </orientation>
             <rate>
                 <value>1.0</value>
@@ -866,7 +866,7 @@
         <arc id="borracionM1 to DisponibleM1" source="T16" target="P16">
             <graphics/>
             <inscription>
-                <value>Default,8</value>
+                <value>Default,1</value>
                 <graphics/>
             </inscription>
             <tagged>
@@ -879,7 +879,7 @@
         <arc id="borracionM2 to DisponibleM2" source="T15" target="P11">
             <graphics/>
             <inscription>
-                <value>Default,8</value>
+                <value>Default,1</value>
                 <graphics/>
             </inscription>
             <tagged>
@@ -990,7 +990,7 @@
                 <value>false</value>
             </tagged>
             <arcpath id="000" x="942" y="440" curvePoint="false"/>
-            <arcpath id="001" x="857" y="401" curvePoint="false"/>
+            <arcpath id="001" x="855" y="405" curvePoint="false"/>
             <type value="normal"/>
         </arc>
         <arc id="EmpezarP1 to LimiteColaP1" source="T4" target="P3">
@@ -1226,13 +1226,13 @@
                 <value>false</value>
             </tagged>
             <arcpath id="000" x="715" y="346" curvePoint="false"/>
-            <arcpath id="001" x="846" y="397" curvePoint="false"/>
+            <arcpath id="001" x="846" y="400" curvePoint="false"/>
             <type value="normal"/>
         </arc>
         <arc id="M1 to borracionM1" source="P17" target="T16">
             <graphics/>
             <inscription>
-                <value>Default,8</value>
+                <value>Default,1</value>
                 <graphics/>
             </inscription>
             <tagged>
@@ -1245,7 +1245,7 @@
         <arc id="M2 to borracionM2" source="P10" target="T15">
             <graphics/>
             <inscription>
-                <value>Default,8</value>
+                <value>Default,1</value>
                 <graphics/>
             </inscription>
             <tagged>
@@ -1362,7 +1362,7 @@
             <tagged>
                 <value>false</value>
             </tagged>
-            <arcpath id="000" x="861" y="390" curvePoint="false"/>
+            <arcpath id="000" x="856" y="395" curvePoint="false"/>
             <arcpath id="001" x="943" y="320" curvePoint="false"/>
             <type value="normal"/>
         </arc>
@@ -1375,7 +1375,7 @@
             <tagged>
                 <value>false</value>
             </tagged>
-            <arcpath id="000" x="850" y="407" curvePoint="false"/>
+            <arcpath id="000" x="850" y="415" curvePoint="false"/>
             <arcpath id="001" x="855" y="495" curvePoint="false"/>
             <arcpath id="002" x="385" y="505" curvePoint="false"/>
             <type value="normal"/>
