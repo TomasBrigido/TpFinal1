@@ -1,9 +1,5 @@
-import javax.swing.*;
-import javax.swing.plaf.TableHeaderUI;
 import java.io.*;
 import java.sql.Timestamp;
-
-import static java.lang.Thread.sleep;
 
 
 public class Main {
@@ -21,28 +17,7 @@ public class Main {
 
         Thread thread_task[]= new Thread[15];
 
-
-/*
-        Tarea t0 = new Tarea(m,0,numeroDeTransiciones);
-        Thread h0 = new Thread(t0);
-        h0.start();
-
-        Tarea t1 = new Tarea(m,1,numeroDeTransiciones);
-        Thread h1 = new Thread(t1);
-        h1.start();
-
-        Tarea t2 = new Tarea(m,11,numeroDeTransiciones);
-        Thread h2 = new Thread(t2);
-        h2.start();
-
-        Tarea t3 = new Tarea(m,3,numeroDeTransiciones);
-        Thread h3 = new Thread(t3);
-        h3.start();
-
-        Tarea t4 = new Tarea(m,7,numeroDeTransiciones);
-        Thread h4 = new Thread(t4);
-        h4.start();
-*/
+        long start=System.currentTimeMillis();
         int indice=0;
         for(int i = 0; i<17 ; i++){
             int[] a= {i};
@@ -60,27 +35,19 @@ public class Main {
             indice++;
         }
 
-        System.out.println("Finalizado wachin!");
-        //Logger.println("Cantidad de ",false);
-/*        while (true){
-
-            System.out.println("*************************************** 5: " + m.contador5 + "*****************************************");
-            System.out.println("*************************************** 6: " + m.contador6 + "*****************************************");
-            System.out.println("*************************************** 7: " + m.contador7 + "*****************************************");
-            System.out.println("*************************************** 8: " + m.contador8 + "*****************************************");
-            try{
-                Thread.sleep(100);
-            }catch (InterruptedException e){
+        for (int i=0;i<15;i++) {
+            try {
+                thread_task[i].join();
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+        }
+        long fin = System.currentTimeMillis();
+        float res=(float)(fin-start)/1000;
+        System.out.println("Tiempo total: "+res);
 
-        }*/
-
-        // try{
-        //     Thread.sleep(1000);
-        // }catch (InterruptedException e){
-        //     e.printStackTrace();
-        // }
+        //String command= "python3 hello.py "+5;
+        //Process p = Runtime.getRuntime().exec(command);
 
     }
 }

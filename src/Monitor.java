@@ -76,7 +76,7 @@ public class Monitor {
 				}
 			}
 			if(!despierto) {
-				if(getEnd()){
+				if(end){
 					System.out.println("Finalizando hilo");
 					return;
 				}
