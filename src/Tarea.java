@@ -3,7 +3,7 @@ public class Tarea implements Runnable{
     private int[] transicion;
     private Matriz mTransicion;
     public int tiempoDormir;
-    private static final int TOTAL_TAREAS=100;
+    private static final int TOTAL_TAREAS=5;
 
 
     public Tarea(Monitor m, int[] transicion, int numeroDeTransiciones){
@@ -31,6 +31,8 @@ public class Tarea implements Runnable{
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
+                }else if(tiempoDormir<0) {
+
                 }else{
                     if(m.getEnd()){break;} //se pone esto porque cuando va cerrando los hilos en aquellos que tiene dos transiciones para disparar, la segunda entra al monitor cambia el k a true se duerme y no despierta a nadie mas
                     Logger.updateContador(transicion[i]);

@@ -42,11 +42,11 @@ public final class Logger {
     public static void clearLogs(){
         try{
             File miDir = new File(".");
-            FileWriter writer_t = new FileWriter(miDir.getCanonicalPath()+"/src/logs/exec_t.txt",true);
+            //FileWriter writer_t = new FileWriter(miDir.getCanonicalPath()+"/src/logs/exec_t.txt",true);
             FileWriter writer = new FileWriter(miDir.getCanonicalPath()+"/src/logs/log_dev.txt",true);
-            writer_t.write("\n*******************************************\n\n");
+            //writer_t.write("\n*******************************************\n\n");
             writer.write("\n*******************************************\n\n");
-            writer_t.close();
+            //writer_t.close();
             writer.close();
         }catch(IOException e) {
             e.printStackTrace();
@@ -60,17 +60,32 @@ public final class Logger {
 
     public static int getContador(int indice){return contador[indice];}
 
-    public static int[] getBalanceProc(){
-        return new int[]{contador[4], contador[3]};
+    public static int getBalanceProc(int proc) {
+        if(proc==1)
+            return contador[3];
+        else
+            return contador[4];
     }
 
-    public static int[] getBalanceMem(){
-        return new int[]{contador[12]+contador[14], contador[11]+contador[13]};
+    public static int getBalanceMem(int num){
+        if(num==2)
+            return contador[13]+contador[14];
+        else
+            return contador[11]+contador[12];
         //return contador[12]+contador[14]+contador[11]+contador[13];
     }
 
-    public static int[] getTareasProc(){
-        return new int[]{contador[8],contador[10],contador[7],contador[9]};
+    public static int getTareasProc(int proc, int tarea){
+        if(proc==1 && tarea==1)
+            return contador[9];
+        if(proc==1 && tarea==2)
+            return contador[7];
+        if(proc==2 && tarea==1)
+            return contador[10];
+        if(proc==2 && tarea==2)
+            return contador[8];
+        else
+            return -1;
     }
 
     public static int getSumaMemoria(){

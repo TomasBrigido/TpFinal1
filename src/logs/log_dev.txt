@@ -3,8 +3,8 @@
 
 
 Estoy terminando hilo:0
-Soy hilo: 16;despertando a hilo: 1
-Estoy terminando hilo:16
+Soy hilo: 15;despertando a hilo: 1
+Estoy terminando hilo:15
 Soy hilo: 1;despertando a hilo: 2
 Estoy terminando hilo:1
 Soy hilo: 2;despertando a hilo: 3
@@ -27,6 +27,6 @@ Soy hilo: 12;despertando a hilo: 13
 Estoy terminando hilo:12
 Soy hilo: 13;despertando a hilo: 14
 Estoy terminando hilo:13
-Soy hilo: 14;despertando a hilo: 15
+Soy hilo: 14;despertando a hilo: 16
 Estoy terminando hilo:14
-Estoy terminando hilo:15
+Estoy terminando hilo:16
