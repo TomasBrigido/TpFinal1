@@ -3,7 +3,7 @@ public class Tarea implements Runnable{
     private int[] transicion;
     private Matriz mTransicion;
     public int tiempoDormir;
-    private static final int TOTAL_TAREAS=5;
+    private static final int TOTAL_TAREAS=50;
 
 
     public Tarea(Monitor m, int[] transicion, int numeroDeTransiciones){
@@ -22,18 +22,20 @@ public class Tarea implements Runnable{
                 m.dispararTransicion(mTransicion.transformarAVector(transicion[i]));
 
                 int tiempoDormir = m.getRedDePetri().getSensibilizadasConTiempo().getdatoSensibilizadaConTiempo().getElemento(transicion[i], 4);
-                if (tiempoDormir > 0) {
+                if (tiempoDormir != 0) {
                     Logger.println("voy a dormir: " + transicion[i] + "   " + tiempoDormir, false);
                     try {
-                        Thread.sleep(tiempoDormir);
+                        if(tiempoDormir>0) {
+                            Thread.sleep(tiempoDormir);
+                        }else{
+                            Thread.sleep(0);
+                        }
                         //setea el tiempo de dormir en 0 y el id del hilo en -1
                         m.getRedDePetri().getSensibilizadasConTiempo().resetEsperando(mTransicion.transformarAVector(transicion[i]));
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                }else if(tiempoDormir<0) {
-
-                }else{
+                }else {
                     if(m.getEnd()){break;} //se pone esto porque cuando va cerrando los hilos en aquellos que tiene dos transiciones para disparar, la segunda entra al monitor cambia el k a true se duerme y no despierta a nadie mas
                     Logger.updateContador(transicion[i]);
                     i++;
@@ -64,7 +66,6 @@ public class Tarea implements Runnable{
             Logger.println("Soy hilo: "+transicion[0]+";despertando a hilo: "+t,true );
             m.getColas().liberar(t);
         }
-        return;
     }
 
 

@@ -53,6 +53,49 @@ public final class Logger {
         }
     }
 
+    public static void printBalance(String text,boolean file){
+        text= text.equals("") ? "\n":text;
+        if(file){
+            try{
+                File miDir = new File(".");
+                String path = miDir.getCanonicalPath();
+
+                FileWriter writer = new FileWriter(path+"/src/logs/BalanceMemorias.txt",true);
+                writer.write("\n");
+                writer.write(text);
+                writer.close();
+            }catch(IOException e) {
+                e.printStackTrace();
+            }
+        }else{
+            System.out.println(text);
+        }
+    }
+
+    public static void printBalanceEnTxt(){
+        Logger.printBalance("Tareas procesadas por el procesador 1: "+Logger.getBalanceProc(1),true);
+        Logger.printBalance("Tareas procesadas por el procesador 2: "+Logger.getBalanceProc(2),true);
+        Logger.printBalance(" ", true);
+        Logger.printBalance("Tareas 1 procesadas por el procesador 1: "+Logger.getTareasProc(1,1),true);
+        Logger.printBalance("Tareas 2 procesadas por el procesador 1: "+Logger.getTareasProc(1,2),true);
+        Logger.printBalance("Tareas 1 procesadas por el procesador 2: "+Logger.getTareasProc(2,1),true);
+        Logger.printBalance("Tareas 2 procesadas por el procesador 2: "+Logger.getTareasProc(2,2),true);
+        Logger.printBalance(" ", true);
+        Logger.printBalance("Datos almacenados en el slot de memoria 1: "+Logger.getBalanceMem(1),true);
+        Logger.printBalance("Datos almacenados en el slot de memoria 2: "+Logger.getBalanceMem(2),true);
+        Logger.printBalance(" ", true);
+        Logger.printBalance("Porcentaje de tareas del procesador 1 con respecto al total: "+(Logger.getBalanceProc(1)*100/Logger.getSumaMemoria())+"%", true);
+        Logger.printBalance("Porcentaje de tareas del procesador 2 con respecto al total: "+(Logger.getBalanceProc(2)*100/Logger.getSumaMemoria())+"%", true);
+        Logger.printBalance(" ", true);
+        Logger.printBalance("Porcentaje de tareas 1 del procesador 1 con respecto al total: "+(Logger.getTareasProc(1,1)*100/Logger.getSumaMemoria())+"%", true);
+        Logger.printBalance("Porcentaje de tareas 2 del procesador 1 con respecto al total: "+(Logger.getTareasProc(1,2)*100/Logger.getSumaMemoria())+"%", true);
+        Logger.printBalance("Porcentaje de tareas 1 del procesador 2 con respecto al total: "+(Logger.getTareasProc(2,1)*100/Logger.getSumaMemoria())+"%", true);
+        Logger.printBalance("Porcentaje de tareas 2 del procesador 2 con respecto al total: "+(Logger.getTareasProc(2,2)*100/Logger.getSumaMemoria())+"%", true);
+        Logger.printBalance("**********************************", true);
+    }
+
+
+
     public static void updateContador(int t){
         //for(int i=0;i<contador.length;i++)
             contador[t]++;
@@ -91,5 +134,6 @@ public final class Logger {
     public static int getSumaMemoria(){
         return contador[15]+contador[16];
     }
+
 
 }

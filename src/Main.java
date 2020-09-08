@@ -15,7 +15,7 @@ public class Main {
         Monitor m = new Monitor(red, c1, p1);
         int numeroDeTransiciones = red.getNumeroDeTransiciones();
 
-        Thread thread_task[]= new Thread[15];
+        Thread[] thread_task = new Thread[15];
 
         long start=System.currentTimeMillis();
         int indice=0;
@@ -47,17 +47,7 @@ public class Main {
         System.out.println("Tiempo total: "+res+"\n");
 
 
-        System.out.println("Tareas procesadas por el procesador 1: "+Logger.getBalanceProc(1)+"\n");
-        System.out.println("Tareas procesadas por el procesador 2: "+Logger.getBalanceProc(2)+"\n");
-
-        System.out.println("Tareas 1 procesadas por el procesador 1: "+Logger.getTareasProc(1,1)+"\n");
-        System.out.println("Tareas 2 procesadas por el procesador 1: "+Logger.getTareasProc(1,2)+"\n");
-        System.out.println("Tareas 1 procesadas por el procesador 2: "+Logger.getTareasProc(2,1)+"\n");
-        System.out.println("Tareas 2 procesadas por el procesador 2: "+Logger.getTareasProc(2,2)+"\n");
-
-        System.out.println("Datos almacenados en el slot de memoria 1: "+Logger.getBalanceMem(1)+"\n");
-        System.out.println("Datos almacenados en el slot de memoria 2: "+Logger.getBalanceMem(2)+"\n");
-
+        Logger.printBalanceEnTxt();
 
         //String command= "python3 hello.py "+5;
         //Process p = Runtime.getRuntime().exec(command);
