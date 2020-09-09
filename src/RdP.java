@@ -19,8 +19,6 @@ public class RdP {
     private int numeroDePlazas;
     private int[] resPInv= new int[] {1,8,1,8,1,4,4,1};
     private boolean esperando;
-    private int contradorTareas;
-    private int contradorMemoria;
 
     public RdP() throws IOException {
 
@@ -53,10 +51,6 @@ public class RdP {
 
     public int getNumeroDeTransiciones() {
         return numeroDeTransiciones;
-    }
-
-    public int getContadorTarea(int i) {
-        return 0;
     }
 
     /*! \brief Metodo que verifica una a una que transiciones estan sensibilizadas.
@@ -166,14 +160,6 @@ public class RdP {
             return false;
         }
         else return false;
-    }
-
-    public int estadoMemoria(int i) {
-        return 0;
-    }
-
-    public boolean isFull(int n) {
-        return false;
     }
 
     /*! \brief  Metodo que verifica si se cumplen los invariantes de plaza en la ejecucion actual. Multiplica cada uno de

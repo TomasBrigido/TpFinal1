@@ -104,6 +104,7 @@ public final class Logger {
     }
 
     public static void printBalanceEnTxt(){
+        printBalance("Datos de almacenamiento de memoria \n", true);
         printBalance("Tareas procesadas por el procesador 1: "+getBalanceProc(1),true);
         printBalance("Tareas procesadas por el procesador 2: "+getBalanceProc(2),true);
         printBalance(" ", true);

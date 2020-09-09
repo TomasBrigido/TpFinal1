@@ -88,10 +88,6 @@ public class Monitor {
 				}
 			}
 			if(!despierto) {
-				/*if(end){
-					System.out.println("Finalizando hilo");
-					return;
-				}*/
 				Logger.println("Me voy del monitor sin despertar a ningun hilo",false);
 				mutex.release();
 			}
