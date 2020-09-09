@@ -3,7 +3,7 @@ import sys
 import os
 
 # abro archivo 
-f = open(os.path.join(os.getcwd(),"/logs/exec_t.txt"), "r")
+f = open(os.path.join(os.getcwd(),"exec_t.txt"), "r")
 line= f.readline()
 f.close()
 

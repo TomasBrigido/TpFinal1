@@ -46,10 +46,6 @@ public class Main {
         float res=(float)(fin-start)/1000;
         System.out.println("Tiempo total: "+res+"\n");
 
-
         Logger.printBalanceEnTxt();
-
-        //String command= "python3 hello.py "+5;
-        //Process p = Runtime.getRuntime().exec(command);
     }
 }

@@ -136,6 +136,7 @@ public class sensibilizadocontiempo {
         int ahora = (int)tstmp.getTime() - datoSensibilizadaConTiempo.getElemento(transicion.numeroTransicion(),columnaTimeStamp);
         int alpha = datoSensibilizadaConTiempo.getElemento(transicion.numeroTransicion(),columnaAlpha);
         int aux = (alpha - ahora);
+        aux= aux<=0 ? 1 : aux;
         datoSensibilizadaConTiempo.asignarElemento(aux,transicion.numeroTransicion(),columnaTiempoDeDormida);
     }
 }

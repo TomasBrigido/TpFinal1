@@ -29,7 +29,7 @@ public class Monitor {
 			Logger.println("Entro al monitor el hilo : " + Thread.currentThread().getName(),false);
 			k = true;
 
-			while(k){
+			while(k && !end){
 				k = petri_net.Disparar(transicion);
 				Logger.println("Pudo disparar? -> " + k,false);
 
@@ -76,10 +76,10 @@ public class Monitor {
 				}
 			}
 			if(!despierto) {
-				if(end){
+				/*if(end){
 					System.out.println("Finalizando hilo");
 					return;
-				}
+				}*/
 				Logger.println("Me voy del monitor sin despertar a ningun hilo",false);
 				mutex.release();
 			}
