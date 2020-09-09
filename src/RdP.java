@@ -1,7 +1,13 @@
 import java.io.File;
 import java.io.IOException;
 
+/*  La clase RdP (Red de Petri), contiene las matrices y los métodos que provocan el avance de la red y comprueban su correcto funcionamiento.
+    Sus principales matrices son la de incidencia, la cual contiene los pesos de los arcos, las marcaActual y marcaInicial,
+    que contienen la cantidad de tokens de las plazas y las sensibilizadas y sensibilizadasConTiempo que contienen las transiciones que pueden ser o no disparadas.
+    Además se encuentran otras matrices o variables que sirven para comprobar el correcto funcionamiento de la red.
 
+    Tambien tiene los metodos que generan el disparo de la transicion junto con el avance de la red y el metodo de comprobacion de sensibilizadas
+ */
 public class RdP {
     private Matriz sensibilizadas;
     private sensibilizadocontiempo sensibilizadasConTiempo;
@@ -11,7 +17,7 @@ public class RdP {
     private Matriz invPlaza;
     private int numeroDeTransiciones;
     private int numeroDePlazas;
-    private int resPInv[]= new int[] {1,8,1,8,1,4,4,1};
+    private int[] resPInv= new int[] {1,8,1,8,1,4,4,1};
     private boolean esperando;
     private int contradorTareas;
     private int contradorMemoria;
@@ -49,51 +55,57 @@ public class RdP {
         return numeroDeTransiciones;
     }
 
-    /*! \brief Metodo que verifica una a una que transiciones estan sensibilizadas. Para ello, genera un vector columna
-    *          en el que cada indice pertenece a una transicion. El vector tiene un solo valor 1 y los demas son 0s; el valor 1
-    *          representa el disparo en la transicion, luego se  verifica que la matriz resultante sea valida segun la marca actual.
-    *          Si es valida se va armando el vector columna con valor 1 en los indices en los que la transicion esta sensibilizada.
-    *   \return Matriz (objeto) de transiciones sensibilizadas segun la logica de la red de Petri.
-    */
+
+    /*! \brief Metodo que verifica una a una que transiciones estan sensibilizadas.
+     *          Para ello, genera un vector columna en el que cada indice pertenece a una transicion.
+     *          El vector tiene un solo valor 1 y los demas son 0s; el valor 1 representa la transición que se quiere probar.
+     *          Se realiza el disparo de la transicion y luego se verifica que la matriz resultante sea valida para la marca actual.
+     *          Si es valida se va armando un vector columna con valor 1 en los indices en los que la transicion esta sensibilizada.
+     *  \return Matriz (objeto) de transiciones sensibilizadas segun la logica de la red de Petri.
+     */
     public Matriz sensibilizadas(){
         Matriz transiciones = new Matriz(numeroDeTransiciones,1);
         transiciones.asignarElemento(1,0,0);
-        Matriz tmp = new Matriz(numeroDeTransiciones, 1);
+        Matriz tmp = new Matriz(numeroDeTransiciones, 1);   //sus indices en 1 representan las transiciones sensibilizadas
 
         for(int i=0; i<numeroDeTransiciones; i++) {
             Matriz aux = new Matriz(numeroDePlazas,1);
             aux = aux.multiplicar(incidencia,transiciones);
             Matriz aux2 = new Matriz(numeroDePlazas,1);
             aux2 = aux2.suma(marcaActual, aux);
-            boolean m = aux2.valida();
+            boolean m = aux2.valida();              //Se fija que no hayan numeros negativos en la marca despues del disparo
             if(m){
                 tmp.asignarElemento(1,i,0);
             }else{
                 tmp.asignarElemento(0,i,0);
             }
-            transiciones.rotar();
+            transiciones.rotar();                   //Se rota el uno hacia abajo, para comprobar la siguiente transicion
         }
         sensibilizadas=tmp;
         return tmp;
     }
 
+    /*! \brief Metodo que genera el disparo de la transición que se envía como parámetro.
+                Genera el avance correspondiente de la red, es decír modifica la marca actual.
+     *  \return
+     */
     public boolean Disparar(Matriz transicion){
         boolean k = true;
         boolean temporal = false;
         boolean estaSensibilizada = false;
 
-        if(sensibilizadasConTiempo.getdatoSensibilizadaConTiempo().getElemento(transicion.numeroTransicion(),0)!= 0 ){
+        if(sensibilizadasConTiempo.getdatoSensibilizadaConTiempo().getElemento(transicion.numeroTransicion(),0)!= 0 ){ //se fija el tiempo de alfa en mili segundos; si es cero es inmediata
             temporal = true;
             Logger.println("Soy una transicion temporal",false);
 
         }
 
-        if(sensibilizadas.getElemento(transicion.numeroTransicion(),0) == 1){
+        if(sensibilizadas.getElemento(transicion.numeroTransicion(),0) == 1){   //se fija si está sensibilizada
             Logger.println("Mi transicion esta sensibilizada",false);
             estaSensibilizada = true;
         }
 
-        if(temporal && estaSensibilizada) {//si es temporal
+        if(temporal && estaSensibilizada) {     //pregunta si es temporal y está sensibilizada
             boolean ventana = sensibilizadasConTiempo.testVentanaDeTiempo(transicion);//veo si estoy en la ventana de tiempo
             if (ventana) {
                 esperando = sensibilizadasConTiempo.testEsperando(transicion);//veo si no hay nadie durmiendo esperando esa trancision o si el hilo que entro viene de un sleep por esa misma trancision
