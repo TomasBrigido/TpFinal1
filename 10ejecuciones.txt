@@ -1,0 +1,244 @@
+Ejecucion 1
+
+Tareas procesadas por el procesador 1: 486
+Tareas procesadas por el procesador 2: 514
+ 
+Tareas 1 procesadas por el procesador 1: 242
+Tareas 2 procesadas por el procesador 1: 244
+Tareas 1 procesadas por el procesador 2: 257
+Tareas 2 procesadas por el procesador 2: 257
+ 
+Datos almacenados en el slot de memoria 1: 490
+Datos almacenados en el slot de memoria 2: 510
+ 
+Porcentaje de tareas del procesador 1 con respecto al total: 48%
+Porcentaje de tareas del procesador 2 con respecto al total: 51%
+ 
+Porcentaje de tareas 1 del procesador 1 con respecto al total: 24%
+Porcentaje de tareas 2 del procesador 1 con respecto al total: 24%
+Porcentaje de tareas 1 del procesador 2 con respecto al total: 25%
+Porcentaje de tareas 2 del procesador 2 con respecto al total: 25%
+
+Funcionamiento CORRECTO segun los T-Invariantes
+Tiempo total: 48.949
+
+**********************************
+Ejecucion 2
+
+Tareas procesadas por el procesador 1: 496
+Tareas procesadas por el procesador 2: 504
+ 
+Tareas 1 procesadas por el procesador 1: 243
+Tareas 2 procesadas por el procesador 1: 253
+Tareas 1 procesadas por el procesador 2: 241
+Tareas 2 procesadas por el procesador 2: 263
+ 
+Datos almacenados en el slot de memoria 1: 499
+Datos almacenados en el slot de memoria 2: 501
+ 
+Porcentaje de tareas del procesador 1 con respecto al total: 49%
+Porcentaje de tareas del procesador 2 con respecto al total: 50%
+ 
+Porcentaje de tareas 1 del procesador 1 con respecto al total: 24%
+Porcentaje de tareas 2 del procesador 1 con respecto al total: 25%
+Porcentaje de tareas 1 del procesador 2 con respecto al total: 24%
+Porcentaje de tareas 2 del procesador 2 con respecto al total: 26%
+
+Funcionamiento CORRECTO segun los T-Invariantes
+Tiempo total: 46.867
+
+**********************************
+Ejecucion 3
+
+Tareas procesadas por el procesador 1: 481
+Tareas procesadas por el procesador 2: 519
+ 
+Tareas 1 procesadas por el procesador 1: 241
+Tareas 2 procesadas por el procesador 1: 240
+Tareas 1 procesadas por el procesador 2: 257
+Tareas 2 procesadas por el procesador 2: 262
+ 
+Datos almacenados en el slot de memoria 1: 498
+Datos almacenados en el slot de memoria 2: 502
+ 
+Porcentaje de tareas del procesador 1 con respecto al total: 48%
+Porcentaje de tareas del procesador 2 con respecto al total: 51%
+ 
+Porcentaje de tareas 1 del procesador 1 con respecto al total: 24%
+Porcentaje de tareas 2 del procesador 1 con respecto al total: 24%
+Porcentaje de tareas 1 del procesador 2 con respecto al total: 25%
+Porcentaje de tareas 2 del procesador 2 con respecto al total: 26%
+
+Funcionamiento CORRECTO segun los T-Invariantes
+Tiempo total: 46.082
+
+**********************************
+Ejecucion 4
+
+Tareas procesadas por el procesador 1: 501
+Tareas procesadas por el procesador 2: 499
+ 
+Tareas 1 procesadas por el procesador 1: 246
+Tareas 2 procesadas por el procesador 1: 255
+Tareas 1 procesadas por el procesador 2: 258
+Tareas 2 procesadas por el procesador 2: 241
+ 
+Datos almacenados en el slot de memoria 1: 517
+Datos almacenados en el slot de memoria 2: 483
+ 
+Porcentaje de tareas del procesador 1 con respecto al total: 50%
+Porcentaje de tareas del procesador 2 con respecto al total: 49%
+ 
+Porcentaje de tareas 1 del procesador 1 con respecto al total: 24%
+Porcentaje de tareas 2 del procesador 1 con respecto al total: 25%
+Porcentaje de tareas 1 del procesador 2 con respecto al total: 25%
+Porcentaje de tareas 2 del procesador 2 con respecto al total: 24%
+
+Funcionamiento CORRECTO segun los T-Invariantes
+Tiempo total: 50.665
+
+**********************************
+Ejecucion 5
+
+Tareas procesadas por el procesador 1: 494
+Tareas procesadas por el procesador 2: 506
+ 
+Tareas 1 procesadas por el procesador 1: 252
+Tareas 2 procesadas por el procesador 1: 242
+Tareas 1 procesadas por el procesador 2: 253
+Tareas 2 procesadas por el procesador 2: 253
+ 
+Datos almacenados en el slot de memoria 1: 493
+Datos almacenados en el slot de memoria 2: 507
+ 
+Porcentaje de tareas del procesador 1 con respecto al total: 49%
+Porcentaje de tareas del procesador 2 con respecto al total: 50%
+ 
+Porcentaje de tareas 1 del procesador 1 con respecto al total: 25%
+Porcentaje de tareas 2 del procesador 1 con respecto al total: 24%
+Porcentaje de tareas 1 del procesador 2 con respecto al total: 25%
+Porcentaje de tareas 2 del procesador 2 con respecto al total: 25%
+
+Funcionamiento CORRECTO segun los T-Invariantes
+Tiempo total: 44.956
+**********************************
+Ejecucion 6
+
+Tareas procesadas por el procesador 1: 507
+Tareas procesadas por el procesador 2: 493
+ 
+Tareas 1 procesadas por el procesador 1: 260
+Tareas 2 procesadas por el procesador 1: 247
+Tareas 1 procesadas por el procesador 2: 235
+Tareas 2 procesadas por el procesador 2: 258
+ 
+Datos almacenados en el slot de memoria 1: 495
+Datos almacenados en el slot de memoria 2: 505
+ 
+Porcentaje de tareas del procesador 1 con respecto al total: 50%
+Porcentaje de tareas del procesador 2 con respecto al total: 49%
+ 
+Porcentaje de tareas 1 del procesador 1 con respecto al total: 26%
+Porcentaje de tareas 2 del procesador 1 con respecto al total: 24%
+Porcentaje de tareas 1 del procesador 2 con respecto al total: 23%
+Porcentaje de tareas 2 del procesador 2 con respecto al total: 25%
+
+Funcionamiento CORRECTO segun los T-Invariantes
+Tiempo total: 45.746
+**********************************
+Ejecucion 7
+
+Tareas procesadas por el procesador 1: 476
+Tareas procesadas por el procesador 2: 524
+ 
+Tareas 1 procesadas por el procesador 1: 255
+Tareas 2 procesadas por el procesador 1: 221
+Tareas 1 procesadas por el procesador 2: 271
+Tareas 2 procesadas por el procesador 2: 253
+ 
+Datos almacenados en el slot de memoria 1: 507
+Datos almacenados en el slot de memoria 2: 493
+ 
+Porcentaje de tareas del procesador 1 con respecto al total: 47%
+Porcentaje de tareas del procesador 2 con respecto al total: 52%
+ 
+Porcentaje de tareas 1 del procesador 1 con respecto al total: 25%
+Porcentaje de tareas 2 del procesador 1 con respecto al total: 22%
+Porcentaje de tareas 1 del procesador 2 con respecto al total: 27%
+Porcentaje de tareas 2 del procesador 2 con respecto al total: 25%
+
+Funcionamiento CORRECTO segun los T-Invariantes
+Tiempo total: 46.962
+**********************************
+Ejecucion 8
+
+Tareas procesadas por el procesador 1: 488
+Tareas procesadas por el procesador 2: 512
+ 
+Tareas 1 procesadas por el procesador 1: 221
+Tareas 2 procesadas por el procesador 1: 267
+Tareas 1 procesadas por el procesador 2: 254
+Tareas 2 procesadas por el procesador 2: 258
+ 
+Datos almacenados en el slot de memoria 1: 472
+Datos almacenados en el slot de memoria 2: 528
+ 
+Porcentaje de tareas del procesador 1 con respecto al total: 48%
+Porcentaje de tareas del procesador 2 con respecto al total: 51%
+ 
+Porcentaje de tareas 1 del procesador 1 con respecto al total: 22%
+Porcentaje de tareas 2 del procesador 1 con respecto al total: 26%
+Porcentaje de tareas 1 del procesador 2 con respecto al total: 25%
+Porcentaje de tareas 2 del procesador 2 con respecto al total: 25%
+
+Funcionamiento CORRECTO segun los T-Invariantes
+Tiempo total: 44.816
+**********************************
+Ejecucion 9
+
+Tareas procesadas por el procesador 1: 504
+Tareas procesadas por el procesador 2: 496
+ 
+Tareas 1 procesadas por el procesador 1: 269
+Tareas 2 procesadas por el procesador 1: 235
+Tareas 1 procesadas por el procesador 2: 254
+Tareas 2 procesadas por el procesador 2: 242
+ 
+Datos almacenados en el slot de memoria 1: 467
+Datos almacenados en el slot de memoria 2: 533
+ 
+Porcentaje de tareas del procesador 1 con respecto al total: 50%
+Porcentaje de tareas del procesador 2 con respecto al total: 49%
+ 
+Porcentaje de tareas 1 del procesador 1 con respecto al total: 26%
+Porcentaje de tareas 2 del procesador 1 con respecto al total: 23%
+Porcentaje de tareas 1 del procesador 2 con respecto al total: 25%
+Porcentaje de tareas 2 del procesador 2 con respecto al total: 24%
+
+Funcionamiento CORRECTO segun los T-Invariantes
+Tiempo total: 46.532
+**********************************
+Ejecucion 10
+
+Tareas procesadas por el procesador 1: 495
+Tareas procesadas por el procesador 2: 505
+ 
+Tareas 1 procesadas por el procesador 1: 248
+Tareas 2 procesadas por el procesador 1: 247
+Tareas 1 procesadas por el procesador 2: 260
+Tareas 2 procesadas por el procesador 2: 245
+ 
+Datos almacenados en el slot de memoria 1: 523
+Datos almacenados en el slot de memoria 2: 477
+ 
+Porcentaje de tareas del procesador 1 con respecto al total: 49%
+Porcentaje de tareas del procesador 2 con respecto al total: 50%
+ 
+Porcentaje de tareas 1 del procesador 1 con respecto al total: 24%
+Porcentaje de tareas 2 del procesador 1 con respecto al total: 24%
+Porcentaje de tareas 1 del procesador 2 con respecto al total: 26%
+Porcentaje de tareas 2 del procesador 2 con respecto al total: 24%
+
+Funcionamiento CORRECTO segun los T-Invariantes
+Tiempo total: 45.545
+**********************************
