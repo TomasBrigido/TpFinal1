@@ -55,6 +55,9 @@ public class RdP {
         return numeroDeTransiciones;
     }
 
+    public int getContadorTarea(int i) {
+        return 0;
+    }
 
     /*! \brief Metodo que verifica una a una que transiciones estan sensibilizadas.
      *          Para ello, genera un vector columna en el que cada indice pertenece a una transicion.
@@ -63,6 +66,7 @@ public class RdP {
      *          Si es valida se va armando un vector columna con valor 1 en los indices en los que la transicion esta sensibilizada.
      *  \return Matriz (objeto) de transiciones sensibilizadas segun la logica de la red de Petri.
      */
+
     public Matriz sensibilizadas(){
         Matriz transiciones = new Matriz(numeroDeTransiciones,1);
         transiciones.asignarElemento(1,0,0);
@@ -84,11 +88,11 @@ public class RdP {
         sensibilizadas=tmp;
         return tmp;
     }
-
     /*! \brief Metodo que genera el disparo de la transición que se envía como parámetro.
                 Genera el avance correspondiente de la red, es decír modifica la marca actual.
      *  \return
      */
+
     public boolean Disparar(Matriz transicion){
         boolean k = true;
         boolean temporal = false;
@@ -162,10 +166,6 @@ public class RdP {
             return false;
         }
         else return false;
-    }
-
-    public int getContadorTarea(int i) {
-        return 0;
     }
 
     public int estadoMemoria(int i) {

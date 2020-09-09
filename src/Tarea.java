@@ -3,7 +3,7 @@ public class Tarea implements Runnable{
     private int[] transicion;
     private Matriz mTransicion;
     public int tiempoDormir;
-    private static final int TOTAL_TAREAS=1000;
+    private static final int TOTAL_TAREAS=10;
 
 
     public Tarea(Monitor m, int[] transicion, int numeroDeTransiciones){

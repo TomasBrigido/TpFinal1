@@ -42,6 +42,7 @@ public class Main {
                 e.printStackTrace();
             }
         }
+
         long fin = System.currentTimeMillis();
         float res=(float)(fin-start)/1000;
         System.out.println("Tiempo total: "+res+"\n");

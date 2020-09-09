@@ -173,16 +173,6 @@ public class Matriz {
         }
         this.asignarElemento(aux,0,0);
     }
-/*
-    public void rotar() {
-        int aux[][] = this.m;
-        for (int i = this.numeroDeFilas - 1; i > 0; i--) {
-            this.m[i][0] = aux[i - 1][0];
-        }
-        this.m[0][0] = aux[numeroDeFilas-1][0];
-        this.imprimirMatriz();
-    }
-*/
 
     /*! \brief Multiplica dos matrices de manera vectorial y devuelve la matriz resultante. En caso de que no se cumpla la regla
      *         de dimensiones en la multiplicacion (Numero de columnas de la primera tiene que ser igual al numero de filas de

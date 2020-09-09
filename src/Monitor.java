@@ -23,6 +23,18 @@ public class Monitor {
 		return petri_net;
 	}
 
+	public boolean getEnd() {
+		return end;
+	}
+
+	public Colas getColas(){
+		return colas;
+	}
+
+	public void setEnd(boolean end) {
+		this.end = end;
+	}
+
 	public void dispararTransicion(Matriz transicion)	{
 		try {
 			mutex.acquire();
@@ -86,17 +98,5 @@ public class Monitor {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-	}
-
-	public boolean getEnd() {
-		return end;
-	}
-
-	public void setEnd(boolean end) {
-		this.end = end;
-	}
-
-	public Colas getColas(){
-		return colas;
 	}
 }

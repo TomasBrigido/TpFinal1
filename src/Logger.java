@@ -6,6 +6,39 @@ public final class Logger {
     private static int[] contador = new int[17];
     private Logger(){ }
 
+    public static int getContador(int indice){return contador[indice];}
+
+    public static int getBalanceProc(int proc) {
+        if(proc==1)
+            return contador[3];
+        else
+            return contador[4];
+    }
+
+    public static int getBalanceMem(int num){
+        if(num==2)
+            return contador[13]+contador[14];
+        else
+            return contador[11]+contador[12];
+    }
+
+    public static int getTareasProc(int proc, int tarea){
+        if(proc==1 && tarea==1)
+            return contador[9];
+        if(proc==1 && tarea==2)
+            return contador[7];
+        if(proc==2 && tarea==1)
+            return contador[10];
+        if(proc==2 && tarea==2)
+            return contador[8];
+        else
+            return -1;
+    }
+
+    public static int getSumaMemoria(){
+        return contador[15]+contador[16];
+    }
+
     public static void printT(int transicion){
         try{
             File miDir = new File(".");
@@ -94,39 +127,6 @@ public final class Logger {
 
     public static void updateContador(int t){
         contador[t]++;
-    }
-
-    public static int getContador(int indice){return contador[indice];}
-
-    public static int getBalanceProc(int proc) {
-        if(proc==1)
-            return contador[3];
-        else
-            return contador[4];
-    }
-
-    public static int getBalanceMem(int num){
-        if(num==2)
-            return contador[13]+contador[14];
-        else
-            return contador[11]+contador[12];
-    }
-
-    public static int getTareasProc(int proc, int tarea){
-        if(proc==1 && tarea==1)
-            return contador[9];
-        if(proc==1 && tarea==2)
-            return contador[7];
-        if(proc==2 && tarea==1)
-            return contador[10];
-        if(proc==2 && tarea==2)
-            return contador[8];
-        else
-            return -1;
-    }
-
-    public static int getSumaMemoria(){
-        return contador[15]+contador[16];
     }
 
 
