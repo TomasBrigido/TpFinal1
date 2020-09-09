@@ -95,7 +95,7 @@ public class RdP {
         boolean estaSensibilizada = false;
 
         if(sensibilizadasConTiempo.getdatoSensibilizadaConTiempo().getElemento(transicion.numeroTransicion(),0)!= 0 ){ //se fija el tiempo de alfa en mili segundos; si es cero es inmediata
-            temporal = true;
+            temporal = true;                                                                                                    //setea la vandera temporal en true
             Logger.println("Soy una transicion temporal",false);
 
         }
@@ -134,17 +134,17 @@ public class RdP {
             transicion.imprimirMatriz();
 
             Matriz aux = new Matriz(numeroDePlazas, 1);
-            aux = aux.multiplicar(incidencia, transicion);
+            aux = aux.multiplicar(incidencia, transicion);                  //multiplica la matriz de incidencia con la de transición
             Matriz aux2 = new Matriz(numeroDePlazas, 1);
-            aux2 = aux2.suma(marcaActual, aux);
+            aux2 = aux2.suma(marcaActual, aux);                             //al resultado anterior lo suma con la marca actual para obtener la nueva marca
 
             Logger.println("imprimo la matriz marca actual: ",false);
             aux2.imprimirMatriz();
 
-            boolean matrizValida = aux2.valida();
+            boolean matrizValida = aux2.valida();                       //Comprueba que la matriz no tenga elementos negativos
             if (matrizValida) {
                 if(temporal) {
-                    sensibilizadasConTiempo.resetEsperando(transicion);//reseteo el id del hilo en la tracision y el tiempo de dormida
+                    sensibilizadasConTiempo.resetEsperando(transicion); //reseteo el id del hilo en la tracision y el tiempo de dormida
                 }
 
                 //Compruebo los invariantes de plaza en cada disparo
