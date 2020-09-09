@@ -7,7 +7,7 @@ public class Monitor {
 	private Colas colas;
 	private Politicas politica;
 	private boolean k;
-	private boolean despierto;
+	private boolean despierto; //Bandera para dar lugar en el monitor
 	private boolean end;
 
 	public Monitor(RdP red, Colas colas, Politicas politica) {
@@ -35,47 +35,50 @@ public class Monitor {
 		this.end = end;
 	}
 
+	/*
+	Metodo que se encarga de organizar la entrada, salida y disparos de los hilos
+	 */
 	public void dispararTransicion(Matriz transicion)	{
 		try {
 			mutex.acquire();
 			Logger.println("Entro al monitor el hilo : " + Thread.currentThread().getName(),false);
 			k = true;
 
-			while(k && !end){
+			while(k && !end){  //!end se utiliza para cerrar la "puerta" del monitor
 				k = petri_net.Disparar(transicion);
 				Logger.println("Pudo disparar? -> " + k,false);
 
 				int comparacionHiloID = petri_net.getSensibilizadasConTiempo().getdatoSensibilizadaConTiempo().getElemento(transicion.numeroTransicion(),3);
 
-				if( comparacionHiloID == Thread.currentThread().getId()){
+				if( comparacionHiloID == Thread.currentThread().getId()){ //Condicional para saber si me tengo que ir a dormir
 					mutex.release();
 					Logger.println("Voy a dormir",false);
 					return;
 				}
 
-				if(k){
-                    Matriz and = new Matriz(petri_net.getNumeroDeTransiciones(),1).comparar(petri_net.sensibilizadas(),colas.quienesEstan());
+				if(k){ //Si se pudo disparar k = true sino k = false
+                    Matriz and = new Matriz(petri_net.getNumeroDeTransiciones(),1).comparar(petri_net.sensibilizadas(),colas.quienesEstan()); //Matriz de comparacion entra trans sens e hilos en cola
 					Logger.println("Imprimo la matriz de comparacion de selsibilizadas y hilos en cola",false);
 					and.imprimirMatriz();
 					int m = and.sumarElementos();
 					Matriz proximo_disparo; // la creo para igualarla a la matriz and
 
-					// aca se busca el hilo a despertar dentro de la cola correspondiente, se lo despierta y nos fuimos, queda el hilo despierto dentro del while linea 28
+					// Seleccion a un hilo para desperar si m>0 hay hilos para desperar
 					if(m>0){
 						proximo_disparo = and;
 						if(m>1){
-							proximo_disparo = politica.cual(and);//despertar a otro
+							proximo_disparo = politica.cual(and);//Selecciono que hilo desperar cuando hay mas de uno
 							Logger.println("Eligio la transicion: ",false);
 							proximo_disparo.imprimirMatriz();
 						}
 						int indice ;
-						indice = proximo_disparo.numeroTransicion();//que hilo tiene que despertar en el arreglo de semaforos
+						indice = proximo_disparo.numeroTransicion();//selecciono el hilo a desperar del arreglo
 						Logger.println("Se desperto el hilo de la transicion: " + indice,false);
-						colas.liberar(indice);
-						despierto = true;
-						break;
+						colas.liberar(indice);//Despierto al hilo seleccionado
+						despierto = true; //Pongo la bandera de despierto en true
+						break;  // Me voy del monitor dejando mi lugar sin liberar el mutex
 
-					}else{// para m==0
+					}else{// Como m=0 no encontre ningun hilo para desperar me voy del monitor liberando el mutex
 						k=false;
 						despierto = false;
 					}
@@ -87,7 +90,7 @@ public class Monitor {
 					System.out.println("Me desperte, k="+k);
 				}
 			}
-			if(!despierto) {
+			if(!despierto) {//Decido si me voy del monitor liberando o no el mutex
 				Logger.println("Me voy del monitor sin despertar a ningun hilo",false);
 				mutex.release();
 			}
