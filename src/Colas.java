@@ -2,10 +2,10 @@ import java.util.concurrent.Semaphore; // hirrere
 // grtr
 public class Colas {
     private Matriz quienes;
-    private Semaphore colas[];
+    private Semaphore[] colas;
     int largoColaTransiciones;
 
-    public Colas(int a){
+    public Colas(int a){    //crea un arreglo de colas, una por cada transicion
         largoColaTransiciones = a;
         quienes = new Matriz(largoColaTransiciones,1);
         colas = new Semaphore[largoColaTransiciones];
@@ -30,7 +30,7 @@ public class Colas {
         return quienes;
     }
 
-    /*! \brief Despierta a los hilos que duermen en la cola determinada por el indice pasado como parametro y aumenta el
+    /*! \brief Despierta a un hilo que duerme en la cola determinada, por el indice pasado como parametro y aumenta el
     *          contador del semaforo.
     *   \param indice Entero que representa el numero de transicion (la cola de esa transicion).
     * */
@@ -38,7 +38,7 @@ public class Colas {
         colas[indice].release();
     }
 
-    /*! \brief El hilo que la ejecuta dquiere un lugar en el semaforo y se pone a dormir en la cola determinada por el
+    /*! \brief El hilo que la ejecuta adquiere un lugar en el semaforo y se pone a dormir en la cola determinada por el
      *         indice pasado como parametro.
      *   \param indice Entero que representa el numero de transicion (la cola de esa transicion).
      * */

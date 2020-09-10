@@ -38,7 +38,7 @@ public class Monitor {
 	/*
 	Metodo que se encarga de organizar la entrada, salida y disparos de los hilos
 	 */
-	public void dispararTransicion(Matriz transicion)	{	//Matriz transicion = tiene un 1 en la transicion a disparar y en las demas
+	public void dispararTransicion(Matriz transicion)	{	//Matriz transicion = tiene un 1 en la transicion a disparar y 0 en las demas
 		try {
 			mutex.acquire();								//limita la entrada al monitor
 			Logger.println("Entro al monitor el hilo : " + Thread.currentThread().getName(),false);

@@ -84,10 +84,10 @@ public class RdP {
     }
     /*! \brief Metodo que genera el disparo de la transición que se envía como parámetro.
                 Genera el avance correspondiente de la red, es decír modifica la marca actual.
-     *  \return
+     *  \return boolean: true -> si pudo disparar; false -> no pudo disparar
      */
 
-    public boolean Disparar(Matriz transicion){
+    public boolean Disparar(Matriz transicion){ //Matriz transicion = tiene un 1 en la transicion a disparar y 0 en las demas
         boolean k = true;
         boolean temporal = false;
         boolean estaSensibilizada = false;

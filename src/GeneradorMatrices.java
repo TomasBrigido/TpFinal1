@@ -10,12 +10,15 @@ public class GeneradorMatrices {
         f = new File(path);
     }
 
+
+    /*Toma datos de un archivo y lo carga como una matriz
+    * \return Matriz con los datos cargados*/
     public Matriz cargarDatos() {
         int f = determinarFilas();
-        int c = determinarColumnas();
+        int c = determinarColumnas(); // Determina la cantidad de filas y de columnas
         Matriz matriz = new Matriz(f,c);
 
-        // Determinar la cantidad de filas y de columnas
+
         int numeroLinea = 0;
         int numeroColumna;
         try {
@@ -37,6 +40,8 @@ public class GeneradorMatrices {
         return matriz;
     }
 
+    /*Determina la cantidad de columnas que tiene la matriz del archivo
+    * \return numero de columnas*/
     public int determinarColumnas(){
         int num=-1;
         try {
@@ -52,6 +57,8 @@ public class GeneradorMatrices {
         return num;
     }
 
+    /*Determina la cantidad de filas que tiene la matriz del archivo
+    * \return numero de filas*/
     public int determinarFilas(){
         int num=0;
         try {
