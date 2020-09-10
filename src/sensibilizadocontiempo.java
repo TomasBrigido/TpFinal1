@@ -36,12 +36,13 @@ public class sensibilizadocontiempo {
         return datoSensibilizadaConTiempo;
     }
 
+
     /*! \brief Metodo que verifica si la transicion temporal se encuentra sensibilizada por tiempo en el momento actual.
      *         Para ello compara el tiempo actual con los valores alfa y beta de la transicion en cuestion.
      *  \param transicion Objeto Matriz en la que se encuentra la transicion a consultar.
      *  \return True si se verifica que el hilo está dentro de la ventana de disparo de la transicion. False en caso contrario.
      */
-    public boolean testVentanaDeTiempo(Matriz trancision) {
+    public boolean testVentanaDeTiempo(Matriz trancision) { //Matriz transicion = tiene un 1 en la transicion a disparar y 0 en las demas
         long fecha = System.currentTimeMillis();
         Timestamp tstmp = new Timestamp(fecha);
         int alpha = datoSensibilizadaConTiempo.getElemento(trancision.numeroTransicion(), columnaAlpha);
@@ -55,6 +56,9 @@ public class sensibilizadocontiempo {
         return false;
     }
 
+    /*! \brief Metodo setea el timeStamp en las transiciones temporales que estan sensibilizadas.
+     *  \param Matriz (o vector columna), con las transiciones sensibilizadas (tiene un 1 en la sensibilizaca, 0 en las otras)
+    */
     public void setNuevoTimeStamp(Matriz sensibilizadas) {
         Matriz aux = new Matriz(sensibilizadas.getFilas(), 1);
         aux = aux.comparar(sensibilizadas, transicionesTemporales);
@@ -69,7 +73,7 @@ public class sensibilizadocontiempo {
     }
 
     /*! \brief Metodo que verifica en la matriz "datoSensibilizadaConTiempo" si la transicion pasada como parametro ya
-     *         ya tiene un hilo esperando (que fue el primero en llegar y esperar) para ejecutar la transicion sensibilizada por tiempo.
+     *         tiene un hilo esperando (que fue el primero en llegar y esperar) para ejecutar la transicion sensibilizada por tiempo.
      *  \param transicion Objeto Matriz en la que se encuentra la transicion en la que se verifica si hay un hilo esperando.
      *  \return True si hay un hilo esperando en esa transicion, False en caso contrario.
      */
@@ -130,13 +134,18 @@ public class sensibilizadocontiempo {
         }
     }
 
+
+    /*! \brief Metodo que setea el tiempo que debe dormir una transición antes de poderse disparar. Lo setea en
+     *   la columnaTiempoDeDormida, de la matriz datoSensibilizadaConTiempo
+     *  \param Matriz transicion = tiene un 1 en la transicion a disparar y 0 en las demas
+     */
     public void setTiempoDormir(Matriz transicion) {
         long fecha = System.currentTimeMillis();
         Timestamp tstmp = new Timestamp(fecha);
         int ahora = (int)tstmp.getTime() - datoSensibilizadaConTiempo.getElemento(transicion.numeroTransicion(),columnaTimeStamp);
         int alpha = datoSensibilizadaConTiempo.getElemento(transicion.numeroTransicion(),columnaAlpha);
         int aux = (alpha - ahora);
-        aux= aux<=0 ? 1 : aux;
+        aux= aux<=0 ? 1 : aux;          //si el tiempo es menor que cero le coloca 1 ms (no le coloca cero por que la trataria como inmediata)
         datoSensibilizadaConTiempo.asignarElemento(aux,transicion.numeroTransicion(),columnaTiempoDeDormida);
     }
 }
