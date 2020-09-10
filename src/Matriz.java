@@ -10,7 +10,7 @@ public class Matriz {
         this.numeroDeColumnas = numeroDeColumnas;
         m = new int[numeroDeFilas][numeroDeColumnas];
 
-        for (int i = 0; i < numeroDeFilas; i++) {
+        for (int i = 0; i < numeroDeFilas; i++) {       //inicializa todos los valores en cero
             for (int j = 0; j < numeroDeColumnas; j++) {
                 m[i][j] = 0;
             }

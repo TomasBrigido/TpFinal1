@@ -38,9 +38,9 @@ public class Monitor {
 	/*
 	Metodo que se encarga de organizar la entrada, salida y disparos de los hilos
 	 */
-	public void dispararTransicion(Matriz transicion)	{
+	public void dispararTransicion(Matriz transicion)	{	//Matriz transicion = tiene un 1 en la transicion a disparar y en las demas
 		try {
-			mutex.acquire();
+			mutex.acquire();								//limita la entrada al monitor
 			Logger.println("Entro al monitor el hilo : " + Thread.currentThread().getName(),false);
 			k = true;
 
@@ -48,7 +48,7 @@ public class Monitor {
 				k = petri_net.Disparar(transicion);
 				Logger.println("Pudo disparar? -> " + k,false);
 
-				int comparacionHiloID = petri_net.getSensibilizadasConTiempo().getdatoSensibilizadaConTiempo().getElemento(transicion.numeroTransicion(),3);
+				int comparacionHiloID = petri_net.getSensibilizadasConTiempo().getdatoSensibilizadaConTiempo().getElemento(transicion.numeroTransicion(),3); //col 3 = IdHilo
 
 				if( comparacionHiloID == Thread.currentThread().getId()){ //Condicional para saber si me tengo que ir a dormir
 					mutex.release();
@@ -66,8 +66,8 @@ public class Monitor {
 					// Seleccion a un hilo para desperar si m>0 hay hilos para desperar
 					if(m>0){
 						proximo_disparo = and;
-						if(m>1){
-							proximo_disparo = politica.cual(and);//Selecciono que hilo desperar cuando hay mas de uno
+						if(m>1){	//Si m>1 hay mas de un hilo para despertar -> decide la política
+							proximo_disparo = politica.cual(and);	//Selecciono que hilo desperar cuando hay mas de uno
 							Logger.println("Eligio la transicion: ",false);
 							proximo_disparo.imprimirMatriz();
 						}
@@ -83,14 +83,14 @@ public class Monitor {
 						despierto = false;
 					}
 
-				}else{	// para k == false if(!voyADormir)
+				}else{	// para k == false if(!voyADormir)	//no pude disprar
 					Logger.println("Me voy a dormir a la cola de mi transicion",false);
 					mutex.release();
 					colas.adquirir(transicion.numeroTransicion());
 					System.out.println("Me desperte, k="+k);
 				}
 			}
-			if(!despierto) {//Decido si me voy del monitor liberando o no el mutex
+			if(!despierto) {//Decido si me voy del monitor liberando o no el mutex //if(!despierto) = si no despierto a nadie
 				Logger.println("Me voy del monitor sin despertar a ningun hilo",false);
 				mutex.release();
 			}
