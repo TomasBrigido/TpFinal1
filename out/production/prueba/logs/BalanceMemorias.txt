@@ -56,3 +56,22 @@ Porcentaje de tareas 2 del procesador 1 con respecto al total: 25%
 Porcentaje de tareas 1 del procesador 2 con respecto al total: 27%
 Porcentaje de tareas 2 del procesador 2 con respecto al total: 21%
 **********************************
+Tareas procesadas por el procesador 1: 7
+Tareas procesadas por el procesador 2: 3
+ 
+Tareas 1 procesadas por el procesador 1: 5
+Tareas 2 procesadas por el procesador 1: 2
+Tareas 1 procesadas por el procesador 2: 1
+Tareas 2 procesadas por el procesador 2: 2
+ 
+Datos almacenados en el slot de memoria 1: 4
+Datos almacenados en el slot de memoria 2: 6
+ 
+Porcentaje de tareas del procesador 1 con respecto al total: 70%
+Porcentaje de tareas del procesador 2 con respecto al total: 30%
+ 
+Porcentaje de tareas 1 del procesador 1 con respecto al total: 50%
+Porcentaje de tareas 2 del procesador 1 con respecto al total: 20%
+Porcentaje de tareas 1 del procesador 2 con respecto al total: 10%
+Porcentaje de tareas 2 del procesador 2 con respecto al total: 20%
+**********************************

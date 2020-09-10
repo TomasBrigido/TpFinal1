@@ -17,7 +17,7 @@ public class RdP {
     private Matriz invPlaza;
     private int numeroDeTransiciones;
     private int numeroDePlazas;
-    private int[] resPInv= new int[] {1,8,1,8,1,4,4,1};
+    private int[] resPInv= new int[] {1,8,1,8,1,4,4,1}; // resultados de las ecuaciones de los P-Invariantes
     private boolean esperando;
 
     public RdP() throws IOException {
