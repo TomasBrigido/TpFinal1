@@ -153,7 +153,7 @@ public class RdP {
 
                 marcaActual = aux2;
                 Matriz pos = sensibilizadas();
-                sensibilizadasConTiempo.actualizarSensibilizadoT(pre,pos);//Actualizo los tstamp de las transiciones que correspondan
+                sensibilizadasConTiempo.actualizarSensibilizadoT(pre,pos);  //Actualizo los tstamp de las transiciones que correspondan
                 //sensibilizadasConTiempo.setNuevoTimeStamp(sensibilizadas());//arrancar los contadores de tiempo de las matrices con tiempo sensibilizadas y para los contadores de las trancisions que se desensibilzaron
                 return true;
             }

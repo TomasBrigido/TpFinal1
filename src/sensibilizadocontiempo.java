@@ -111,7 +111,7 @@ public class sensibilizadocontiempo {
         Aca pasarian estos escenarios:
             -- sensibilizados y luego no sensibilizados hay que apagar el contador (meterle una actualizacion)
             -- sens y sens hay que dejar el contador con el valor de tstamp que tiene
-            -- no sens y no sens hay que dejar el contador 0
+            -- no sens y no sens hay que dejar el contador en 0
          */
 
         Matriz a = new Matriz(pre_sens.getFilas(), pre_sens.getColumnas());
