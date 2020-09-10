@@ -12,7 +12,11 @@ public class Politicas {
     }
 
     /*
-    Devuelve un vector de transiciones de un solo 1 y demas ceros. Ese 1 representa la transicion que segun la politica se va a disparar
+    \brief Devuelve un vector de transiciones de un solo 1 y demas ceros. Ese 1 representa la transicion
+    que segun la politica se va a disparar. Se selecciona aleatoriamente entre todos los hilos que se pueden diparar
+
+    \param recibe la materiz and, con todos los hilos que estan durmiendo y se puedn disparar
+    \return matriz transicion: tiene un 1 en la transición a disparar y cero en las demas.
     */
     public Matriz cual(Matriz a){
         ArrayList<Integer> listaTransiciones = new ArrayList<>();
