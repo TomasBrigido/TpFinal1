@@ -1,0 +1,32 @@
+
+*******************************************
+
+
+Estoy terminando, hilo:0
+Soy hilo: 16;despertando a hilo: 1
+Soy hilo: 15;despertando a hilo: 1
+Estoy terminando, hilo:16
+Soy hilo: 1;despertando a hilo: 2
+Estoy terminando, hilo:15
+Estoy terminando, hilo:1
+Soy hilo: 2;despertando a hilo: 3
+Estoy terminando, hilo:2
+Soy hilo: 3;despertando a hilo: 4
+Estoy terminando, hilo:3
+Soy hilo: 4;despertando a hilo: 5
+Estoy terminando, hilo:4
+Soy hilo: 5;despertando a hilo: 6
+Estoy terminando, hilo:5
+Soy hilo: 6;despertando a hilo: 7
+Estoy terminando, hilo:6
+Soy hilo: 7;despertando a hilo: 8
+Estoy terminando, hilo:7
+Soy hilo: 8;despertando a hilo: 11
+Estoy terminando, hilo:8
+Soy hilo: 11;despertando a hilo: 12
+Estoy terminando, hilo:11
+Soy hilo: 12;despertando a hilo: 13
+Estoy terminando, hilo:12
+Soy hilo: 13;despertando a hilo: 14
+Estoy terminando, hilo:13
+Estoy terminando, hilo:14
