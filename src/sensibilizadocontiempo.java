@@ -4,7 +4,7 @@ import java.sql.Timestamp;
 
 public class sensibilizadocontiempo {
 
-    public static int offset = 2147483647;//Al final lo usamos?
+    public static int offset = 2147483647;
     private Matriz datoSensibilizadaConTiempo; //tengo que tener alpha,beta,tstmp,idhilo,tiempoDeDormida
     private Matriz transicionesTemporales;//Vector de transiciones temporales
     private int columnaAlpha;

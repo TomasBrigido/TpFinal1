@@ -5,9 +5,8 @@ import java.util.ArrayList;
 public class Politicas {
     Random random = new Random();
     RdP rdp;
-    Matriz matriz = new Matriz(0,0);
 
-    public Politicas(RdP red) throws IOException {
+    public Politicas(RdP red)  {
         rdp = red;
     }
 

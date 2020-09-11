@@ -111,7 +111,6 @@ public class RdP {
                 if (esperando) {
                     k = false;
                 } else {
-                    //sensibilizadasConTiempo.setNuevoTimeStamp(sensibilizadas());//nose que hace este metodo
                     k = true; //k en true porque no hay nadie esperando para disparar y estoy dentro de la ventana de tiempo
                 }
             } else {
